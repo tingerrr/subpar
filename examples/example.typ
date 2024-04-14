@@ -1,8 +1,4 @@
-# subpar
-Subpar is a [Typst] package allowing you to create easily referencable subfigures.
-
-```typst
-#import "@preview/subpar:0.0.1": subpar, super-figure
+#import "/src/lib.typ": subpar, super-figure
 #show: subpar
 
 #set page(height: auto)
@@ -21,9 +17,3 @@ Subpar is a [Typst] package allowing you to create easily referencable subfigure
 ) <full>
 
 Above in @full, we see a a figure which is composed of 2 other figures, namely @a and @b.
-```
-![ex]
-
-[ex]: /examples/example.png
-
-[Typst]: https://typst.app/

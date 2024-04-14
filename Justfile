@@ -11,7 +11,8 @@ doc:
 
 # generate the example images
 examples:
-	# TODO
+	typst compile examples/example.typ examples/example.png
+	oxipng --opt max examples/example.png
 
 # run the test suite
 test filter='':
@@ -22,7 +23,7 @@ update filter='':
 	typst-test update {{ filter }}
 
 # run the ci test suite
-ci:
+ci: examples
 	# run one single test first to avoid a race condition on package downloads
 	typst-test run example
 	typst-test run
