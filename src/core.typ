@@ -82,7 +82,7 @@
 
   figure(
     kind: kind-super,
-    numbering:  _ => numbering(numbering-super, n-super),
+    numbering: _ => numbering(numbering-super, n-super),
     supplement: supplement,
     caption: caption,
     placement: placement,
