@@ -18,10 +18,10 @@ jobs:
           packages: imagemagick cargo
           version: 1.0
 
-      - name: Install nu from crates.io
+      - name: Install oxipng from crates.io
         uses: baptiste0928/cargo-install@v2.2.0
         with:
-          crate: nu
+          crate: oxipng
 
       - name: Install just from crates.io
         uses: baptiste0928/cargo-install@v2.2.0
