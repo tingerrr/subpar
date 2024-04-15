@@ -1,4 +1,6 @@
 # subpar
+**NOTE: This package is not yet released and undocumented as I hash out the exact API and work out the kinks.**
+
 Subpar is a [Typst] package allowing you to create easily referencable subfigures.
 
 ```typst
