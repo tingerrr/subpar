@@ -1,5 +1,5 @@
 # subpar
-**NOTE: This package is not yet released and undocumented as I hash out the exact API and work out the kinks.**
+**NOTE: This package is not yet released and undocumented as I hash out the exact API and work out the kinks. You can help by trying it out locally and reporting issues as you encounter them.**
 
 Subpar is a [Typst] package allowing you to create easily referencable subfigures.
 
@@ -22,9 +22,23 @@ Subpar is a [Typst] package allowing you to create easily referencable subfigure
   caption: [A figure composed of two subfigures.],
 ) <full>
 
-Above in @full, we see a a figure which is composed of 2 other figures, namely @a and @b.
+Above in @full, we see a figure which is composed of 2 other figures, namely @a and @b.
 ```
 ![ex]
+
+## Known Issues
+- Relative numbering is incorrect for super-figures, see #1
+- Supplement is always "Figure", regardless of `text.lang`, see: #2
+- Figure show rule cannot be easily reconfigured
+
+## TODO
+The following tasks remain before the first version of subpar is released:
+- [ ] documentation
+- [ ] allow more control over figure layout
+- [ ] allow show subfigures in outline with indentation
+- [ ] add convenient warppers for common types of super figures
+- [ ] add input validation
+- [ ] add a more comprehensive test suite
 
 [ex]: /examples/example.png
 

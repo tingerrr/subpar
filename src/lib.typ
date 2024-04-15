@@ -37,7 +37,7 @@
         it.element.supplement
         [ ]
         numbering(
-          // TODO: this is executed in the wrong context, which is the only blocker for relative numbering
+          // TODO: this is executed in the wrong context, which is the only blocker for relative numbering, see #1
           payload.numbering-super,
           counter(figure.where(kind: payload.kind)).at(it.element.location()).first() + 1
         )
