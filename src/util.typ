@@ -1,20 +1,4 @@
-#let is-element(value, func) = {
-  type(value) == content and value.func() == func
-}
-
-#let extract-payload(body) = {
-  if not body.has("children") { return }
-  if body.children.len() == 0 { return }
-
-  let first = body.children.first()
-
-  if not is-element(first, metadata) { return }
-  first.value
-}
-
-#let embed-payload(body, ..payload) = {
-  metadata(payload.named()) + body
-}
+#let is-element(value, func) = type(value) == content and value.func() == func
 
 #let apply-for-all(
   values,
@@ -25,4 +9,16 @@
   }
 
   outer
+}
+
+#let gather-kinds(body) = {
+  if is-element(body, figure) {
+    if body.at("kind", default: auto) != auto {
+      return (figure.kind,)
+    }
+  } else if body.has("children") {
+    return body.children.map(gather-kinds).flatten().dedup()
+  }
+
+  (image, raw, table)
 }

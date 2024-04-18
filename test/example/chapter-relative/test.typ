@@ -1,7 +1,6 @@
 #import "/test/util.typ": *
 
-#import "/src/lib.typ": subpar, super-figure
-#show: subpar
+#import "/src/lib.typ": subpar
 
 #let sub-figure-numbering = (super, sub) => numbering("1.1a", counter(heading).get().first(), super, sub)
 #let figure-numbering = super => numbering("1.1", counter(heading).get().first(), super)
@@ -10,9 +9,9 @@
 #show heading.where(level: 1): it => counter(figure.where(kind: image)).update(0) + it
 #show figure.where(kind: image): set figure(numbering: figure-numbering)
 
-#let super-figure = super-figure.with(
+#let subpar = subpar.with(
+  numbering: figure-numbering,
   numbering-sub-ref: sub-figure-numbering,
-  numbering-super: figure-numbering,
 )
 
 #outline(target: figure.where(kind: image))
@@ -21,7 +20,7 @@
 
 #figure(fake-image, caption: [aaa])
 
-#super-figure(
+#subpar(
   grid(columns: (1fr, 1fr),
     [#figure(fake-image, caption: [Inner caption]) <a>],
     [#figure(fake-image, caption: [Inner caption]) <b>],
@@ -35,7 +34,7 @@
   caption: [aaa],
 )
 
-#super-figure(
+#subpar(
   grid(columns: (1fr, 1fr),
     [#figure(`adas`, caption: [Inner caption]) <c>],
     [#figure(fake-image, caption: [Inner caption]) <d>],

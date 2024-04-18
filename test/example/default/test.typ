@@ -1,13 +1,12 @@
 #import "/test/util.typ": *
 
-#import "/src/lib.typ": subpar, super-figure
-#show: subpar
+#import "/src/lib.typ": subpar
 
 #outline(target: figure.where(kind: image))
 
 #figure(fake-image, caption: [aaa])
 
-#super-figure(
+#subpar(
   grid(columns: (1fr, 1fr),
     [#figure(fake-image, caption: [Inner caption]) <a>],
     [#figure(fake-image, caption: [Inner caption]) <b>],
@@ -21,7 +20,7 @@
   caption: [aaa],
 )
 
-#super-figure(
+#subpar(
   grid(columns: (1fr, 1fr),
     [#figure(`adas`, caption: [Inner caption]) <c>],
     [#figure(fake-image, caption: [Inner caption]) <d>],
