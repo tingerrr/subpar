@@ -1,4 +1,5 @@
 #import "core.typ"
+#import "util.typ"
 
 #let super-figure = core.super-figure-unprepared
 
@@ -8,7 +9,7 @@
   body,
 ) = {
   show figure.where(kind: core.keys.superfigure): it => {
-    let payload = core.extract-payload(it.body)
+    let payload = util.extract-payload(it.body)
 
     core.super-figure-prepared(
       kind-super: payload.kind,
@@ -31,8 +32,8 @@
   // TODO: outline adjustement
 
   show ref: it => {
-    if core.is-element(it.element, figure) and it.element.kind == core.keys.superfigure {
-      let payload = core.extract-payload(it.element.body)
+    if util.is-element(it.element, figure) and it.element.kind == core.keys.superfigure {
+      let payload = util.extract-payload(it.element.body)
       link(it.element.location(), {
         it.element.supplement
         [ ]

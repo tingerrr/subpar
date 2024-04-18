@@ -1,4 +1,4 @@
-#import "/src/core.typ": embed-payload, extract-payload
+#import "/src/util.typ": embed-payload, extract-payload
 
 #set page(width: 1cm, height: 1cm)
 
