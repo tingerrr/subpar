@@ -12,7 +12,7 @@
   ]), <b>),
   columns: (1fr, 1fr),
   align: top,
-  caption: [A figure composed of two subfigures.],
+  caption: [A figure composed of two sub figures.],
   label: <full>,
 )
 

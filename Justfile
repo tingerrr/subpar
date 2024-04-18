@@ -6,8 +6,8 @@ default:
 	just --list
 
 # generate the manual
-doc:
-	typst compile doc/manual.typ doc/manual.pdf
+doc cmd='compile':
+	typst {{ cmd }} doc/manual.typ doc/manual.pdf
 
 # generate the example images
 examples:

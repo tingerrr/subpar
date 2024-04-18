@@ -17,7 +17,7 @@ Subpar is a [Typst] package for creating sub figures.
     A sunset illuminating the sky above a mountain range.
   ]), <b>),
   columns: (1fr, 1fr),
-  caption: [A figure composed of two subfigures.],
+  caption: [A figure composed of two sub figures.],
   label: <full>,
 )
 
@@ -35,7 +35,7 @@ Above in @full, we see a figure which is composed of 2 other figures, namely @a 
 ## TODO
 The following tasks remain before the first version of subpar is released:
 - [x] documentation
-- [ ] manual generation
+- [x] manual generation
 - [x] allow more control over figure layout
 - [x] add convenient wrappers for common types of super figures
 - [x] add input validation

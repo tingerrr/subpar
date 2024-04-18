@@ -5,7 +5,7 @@
 #let _label = label
 
 /// The counter used for sub figures.
-#let sub-figure-counter = counter("__subpar:subfigure-counter")
+#let sub-figure-counter = counter("__subpar:sub-figure-counter")
 
 /// Creates a figure which may contain other figures, a #emph[super]figure. For
 /// the meaning of parameters take a look at the regular figure documentation.
