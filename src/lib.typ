@@ -43,7 +43,6 @@
   numbering-sub: "(a)",
   numbering-sub-ref: "1a",
 
-  // TODO: somehow resolve this as good as we can for common kinds and for more languages
   supplement: [Figure],
   caption: none,
   placement: none,
@@ -178,7 +177,6 @@
   numbering-sub: "(a)",
   numbering-sub-ref: "1a",
 
-  // TODO: see subpar
   supplement: [Figure],
   caption: none,
   placement: none,
