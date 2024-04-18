@@ -15,3 +15,14 @@
 #let embed-payload(body, ..payload) = {
   metadata(payload.named()) + body
 }
+
+#let apply-for-all(
+  values,
+  rule,
+) = outer => {
+  show: inner => {
+    values.map(rule).fold(inner, (acc, f) => f(acc))
+  }
+
+  outer
+}

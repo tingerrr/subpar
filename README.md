@@ -27,8 +27,8 @@ Above in @full, we see a figure which is composed of 2 other figures, namely @a 
 ![ex]
 
 ## Known Issues
-- Relative numbering is incorrect for super-figures, see #1
-- Supplement is always "Figure", regardless of `text.lang`, see: #2
+- Relative numbering is incorrect for super-figures, see [#1]
+- Supplement is always "Figure", regardless of `text.lang`, see: [#2]
 - Figure show rule cannot be easily reconfigured
 
 ## TODO
@@ -43,3 +43,6 @@ The following tasks remain before the first version of subpar is released:
 [ex]: /examples/example.png
 
 [Typst]: https://typst.app/
+
+[#1]: https://github.com/tingerrr/subpar/issues/1
+[#2]: https://github.com/tingerrr/subpar/issues/2

@@ -13,7 +13,8 @@
     [#figure(fake-image, caption: [Inner caption]) <b>],
   ),
   caption: [Outer caption],
-) <full1>
+  label: <full1>,
+)
 
 #figure(
   fake-image,
@@ -26,7 +27,8 @@
     [#figure(fake-image, caption: [Inner caption]) <d>],
   ),
   caption: [Outer caption],
-) <full2>
+  label: <full2>,
+)
 
 #figure(
   fake-image,
