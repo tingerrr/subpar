@@ -30,7 +30,7 @@ Above in @full, we see a figure which is composed of 2 other figures, namely @a 
 - [x] Supplement is always "Figure", regardless of `text.lang`, see: [#2]
   - [ ] Multilingual documents which refer to a figure from a section with a different language
     will have references in the current language instead
-- [ ] Sub figure captions are not vertically aligned, see [#3]
+- [x] Sub figure captions are not vertically aligned, see [#3]
 
 ## TODO
 The following tasks remain before the first version of subpar is released:

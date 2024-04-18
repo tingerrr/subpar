@@ -181,7 +181,7 @@
   gutter: 1em,
   column-gutter: auto,
   row-gutter: auto,
-  align: horizon,
+  align: bottom,
   inset: (:),
 
   kind: image,
