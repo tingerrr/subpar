@@ -30,7 +30,7 @@
 ///   figures.
 /// - outlined-sub (bool): Whether the sub figures should appear in an outline
 ///   of figures.
-/// - label: The label to attach to this super figure.
+/// - label (label): The label to attach to this super figure.
 /// - show-sub (function, auto): A show rule override for sub figures. Recevies
 ///   the sub figure.
 /// - show-sub-caption (function, auto): A show rule override for sub figure's
