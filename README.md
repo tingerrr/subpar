@@ -29,7 +29,7 @@ Above in @full, we see a figure which is composed of 2 other figures, namely @a 
 - [x] Relative numbering is incorrect for super-figures, see [#1]
 - [x] Supplement is always "Figure", regardless of `text.lang`, see: [#2]
   - [ ] Multilingual documents which refer to a figure from a section with a different language
-    will have references in the current language instead
+    will have references in the current language instead [#4]
 - [x] Sub figure captions are not vertically aligned, see [#3]
 
 ## TODO
@@ -48,3 +48,4 @@ The following tasks remain before the first version of subpar is released:
 [#1]: https://github.com/tingerrr/subpar/issues/1
 [#2]: https://github.com/tingerrr/subpar/issues/2
 [#3]: https://github.com/tingerrr/subpar/issues/3
+[#4]: https://github.com/tingerrr/subpar/issues/4

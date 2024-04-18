@@ -22,6 +22,8 @@
 ///   the super and sub figure numbering respectively.
 /// - supplement (content, function, auto, none): The supplement used for this
 ///   super figure _and_ the sub figures when referenced.
+/// - propagate-supplement (bool): Whether the super figure's supplement should
+///   propagate down to its sub figures.
 /// - caption (content): The caption of this super figure.
 /// - placement (alignement, auto, none): The float placement of this super
 ///   figure.
@@ -44,6 +46,7 @@
   numbering-sub-ref: "1a",
 
   supplement: auto,
+  propagate-supplement: true,
   caption: none,
   placement: none,
   gap: 0.65em,
@@ -63,6 +66,7 @@
   _pkg.t4t.assert.any-type(str, function, numbering-sub-ref)
 
   _pkg.t4t.assert.any-type(str, content, function, type(auto), type(none), supplement)
+  _pkg.t4t.assert.any-type(bool, propagate-supplement)
   _pkg.t4t.assert.any-type(str, content, type(none), caption)
   _pkg.t4t.assert.any(top, bottom, auto, none, placement)
   _pkg.t4t.assert.any-type(length, gap)
@@ -79,10 +83,13 @@
     raw: "raw",
   )
 
-  if supplement == auto and repr(kind) in function-kinds {
-    supplement = context util.i18n-kind(function-kinds.at(repr(kind)))
-  } else {
-    panic("Cannot infer `supplement`, must be set.")
+  // NOTE: if we use no propagation, then we can fallback to the normal auto behavior, fixing #4.
+  if propagate-supplement {
+    if supplement == auto and repr(kind) in function-kinds {
+      supplement = context util.i18n-kind(function-kinds.at(repr(kind)))
+    } else {
+      panic("Cannot infer `supplement`, must be set.")
+    }
   }
 
   show-sub = _pkg.t4t.def.if-auto(it => it, show-sub)
@@ -115,11 +122,8 @@
           },
         )
 
-        set figure(
-          supplement: supplement,
-          outlined: outlined-sub,
-          placement: none,
-        )
+        set figure(supplement: supplement) if propagate-supplement
+        set figure(outlined: outlined-sub, placement: none)
 
         show figure: show-sub
         show figure: it => {
@@ -164,6 +168,8 @@
 ///   `numbering-sub-ref`.
 /// - supplement (content, function, auto, none): Corressponds to the super
 ///   figure's `supplement`.
+/// - propagate-supplement (bool): Corressponds to the super figure's
+///   `propagate-supplement`.
 /// - caption (content): Corressponds to the super figure's `caption`.
 /// - placement (alignement, auto, none): Corressponds to the super figure's
 ///   `placement`.
@@ -191,6 +197,7 @@
   numbering-sub-ref: "1a",
 
   supplement: auto,
+  propagate-supplement: true,
   caption: none,
   placement: none,
   gap: 0.65em,
@@ -248,6 +255,7 @@
     numbering-sub-ref: numbering-sub-ref,
 
     supplement: supplement,
+    propagate-supplement: propagate-supplement,
     caption: caption,
     placement: placement,
     gap: gap,
