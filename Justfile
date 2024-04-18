@@ -24,6 +24,4 @@ update filter='':
 
 # run the ci test suite
 ci: examples
-	# run one single test first to avoid a race condition on package downloads
-	typst-test run dummy
 	typst-test run
