@@ -186,6 +186,14 @@
   show-sub-caption: auto,
   ..args,
 ) = {
+  _pkg.t4t.assert.any-type(type(auto), int, length, relative, fraction, array, columns)
+  _pkg.t4t.assert.any-type(type(auto), int, length, relative, fraction, array, rows)
+  _pkg.t4t.assert.any-type(type(auto), int, length, relative, fraction, array, gutter)
+  _pkg.t4t.assert.any-type(type(auto), int, length, relative, fraction, array, column-gutter)
+  _pkg.t4t.assert.any-type(type(auto), int, length, relative, fraction, array, row-gutter)
+  _pkg.t4t.assert.any-type(type(auto), array, alignment, function, align)
+  _pkg.t4t.assert.any-type(length, relative, array, dictionary, function, inset)
+
   if args.named().len() != 0 {
     panic("Unexpectd arguments: `" + repr(args.named()) + "`")
   }
