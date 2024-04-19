@@ -4,6 +4,7 @@
 #let _numbering = numbering
 #let _label = label
 
+/// The counter used for sub figures.
 #let sub-figure-counter = counter("__subpar:subfigure-counter")
 
 /// Creates a figure which may contain other figures, a #emph[super]figure. For
@@ -143,19 +144,23 @@
 ///   `align` parameter.
 /// - inset (relaltive, array, dictionary, function): Corresponds to the grid's
 ///   `inset` parameter.
-/// - numbering (): Corressponds to the super figure's `numbering`.
-/// - numbering-sub (): Corressponds to the super figure's `numbering-sub`.
-/// - numbering-sub-ref (): Corressponds to the super figure's
+/// - kind (str, function): Corressponds to the super figure's `kind`.
+/// - numbering (str, function): Corressponds to the super figure's
+///   `numbering`.
+/// - numbering-sub (str, function): Corressponds to the super figure's
+///   `numbering-sub`.
+/// - numbering-sub-ref (str, function): Corressponds to the super figure's
 ///   `numbering-sub-ref`.
-/// - supplement (): Corressponds to the super figure's `supplement`.
-/// - caption (): Corressponds to the super figure's `caption`.
-/// - placement (): Corressponds to the super figure's `placement`.
-/// - gap (): Corressponds to the super figure's `gap`.
-/// - outlined (): Corressponds to the super figure's `outlined`.
-/// - outlined-sub (): Corressponds to the super figure's `outlined-sub`.
-/// - label (): Corressponds to the super figure's `label`.
-/// - show-sub (): Corressponds to the super figure's `show-sub`.
-/// - show-sub-caption (): Corressponds to the super figure's
+/// - supplement (content): Corressponds to the super figure's `supplement`.
+/// - caption (content): Corressponds to the super figure's `caption`.
+/// - placement (alignement, auto, none): Corressponds to the super figure's
+///   `placement`.
+/// - gap (length): Corressponds to the super figure's `gap`.
+/// - outlined (bool): Corressponds to the super figure's `outlined`.
+/// - outlined-sub (bool): Corressponds to the super figure's `outlined-sub`.
+/// - label (label, none): Corressponds to the super figure's `label`.
+/// - show-sub (function): Corressponds to the super figure's `show-sub`.
+/// - show-sub-caption (function): Corressponds to the super figure's
 ///   `show-sub-caption`.
 /// -> content
 #let subpar-grid(
