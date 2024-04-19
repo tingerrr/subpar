@@ -4,13 +4,12 @@
 Subpar is a [Typst] package allowing you to create easily referencable subfigures.
 
 ```typst
-#import "@preview/subpar:0.0.1": subpar, super-figure
-#show: subpar
+#import "@preview/subpar:0.0.1": subpar
 
 #set page(height: auto)
 #set par(justify: true)
 
-#super-figure(
+#subpar(
   grid(columns: (1fr, 1fr), gutter: 1em,
     [#figure(image("/assets/andromeda.jpg"), caption: [
       An image of the andromeda galaxy.
@@ -20,7 +19,8 @@ Subpar is a [Typst] package allowing you to create easily referencable subfigure
     ]) <b>],
   ),
   caption: [A figure composed of two subfigures.],
-) <full>
+  label: <full>,
+)
 
 Above in @full, we see a figure which is composed of 2 other figures, namely @a and @b.
 ```

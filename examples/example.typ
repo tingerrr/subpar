@@ -1,10 +1,9 @@
-#import "/src/lib.typ": subpar, super-figure
-#show: subpar
+#import "/src/lib.typ": subpar
 
 #set page(height: auto)
 #set par(justify: true)
 
-#super-figure(
+#subpar(
   grid(columns: (1fr, 1fr), gutter: 1em,
     [#figure(image("/assets/andromeda.jpg"), caption: [
       An image of the andromeda galaxy.
