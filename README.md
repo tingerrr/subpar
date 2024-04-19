@@ -33,9 +33,9 @@ Above in @full, we see a figure which is composed of 2 other figures, namely @a 
 
 ## TODO
 The following tasks remain before the first version of subpar is released:
-- [ ] documentation
+- [x] documentation
+- [ ] manual generation
 - [ ] allow more control over figure layout
-- [ ] allow showing subfigures in outline with indentation
 - [ ] add convenient warppers for common types of super figures
 - [x] add input validation
 - [ ] add a more comprehensive test suite
