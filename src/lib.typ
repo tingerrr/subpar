@@ -30,6 +30,10 @@
 /// - outlined-sub (bool): Whether the sub figures should appear in an outline
 ///   of figures.
 /// - label: The label to attach to this super figure.
+/// - show-sub (function, auto): A show rule override for sub figures. Recevies
+///   the sub figure.
+/// - show-sub-caption (function, auto): A show rule override for sub figure's
+///   captions. Receives the realized numbering and caption element.
 /// -> content
 #let subpar(
   kind: image,
@@ -47,6 +51,9 @@
   outlined-sub: false,
   label: none,
 
+  show-sub: auto,
+  show-sub-caption: auto,
+
   body,
 ) = {
   _pkg.t4t.assert.any-type(str, function, kind)
@@ -62,6 +69,16 @@
   _pkg.t4t.assert.any-type(bool, outlined)
   _pkg.t4t.assert.any-type(bool, outlined-sub)
   _pkg.t4t.assert.any-type(_label, label)
+
+  _pkg.t4t.assert.any-type(function, type(auto), show-sub)
+  _pkg.t4t.assert.any-type(function, type(auto), show-sub-caption)
+
+  show-sub = _pkg.t4t.def.if-auto(it => it, show-sub)
+  show-sub-caption = _pkg.t4t.def.if-auto((num, it) => {
+    num
+    [ ]
+    it.body
+  }, show-sub-caption)
 
   context {
     let n-super = counter(figure.where(kind: kind)).get().first() + 1
@@ -92,13 +109,10 @@
           placement: none,
         )
 
+        show figure: show-sub
         show figure: it => {
           let n-sub = sub-figure-counter.get().first() + 1
-          show figure.caption: it => {
-            _numbering(numbering-sub, n-sub)
-            [ ]
-            it.body
-          }
+          show figure.caption: show-sub-caption.with(_numbering(numbering-sub, n-sub))
 
           sub-figure-counter.step()
           it

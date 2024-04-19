@@ -29,13 +29,13 @@ Above in @full, we see a figure which is composed of 2 other figures, namely @a 
 ## Known Issues
 - [x] Relative numbering is incorrect for super-figures, see [#1]
 - [ ] Supplement is always "Figure", regardless of `text.lang`, see: [#2]
-- [ ] Figure show rule cannot be easily reconfigured
+- [x] Figure show rule cannot be easily reconfigured
 
 ## TODO
 The following tasks remain before the first version of subpar is released:
 - [x] documentation
 - [ ] manual generation
-- [ ] allow more control over figure layout
+- [x] allow more control over figure layout
 - [ ] add convenient warppers for common types of super figures
 - [x] add input validation
 - [ ] add a more comprehensive test suite
