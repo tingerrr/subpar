@@ -29,8 +29,7 @@ Above in @full, we see a figure which is composed of 2 other figures, namely @a 
 ## Known Issues
 - [x] Relative numbering is incorrect for super-figures, see [#1]
 - [ ] Supplement is always "Figure", regardless of `text.lang`, see: [#2]
-- [x] Figure show rule cannot be easily reconfigured
-- [ ] Sub figure captions are not vertically aligned
+- [ ] Sub figure captions are not vertically aligned, see [#3]
 
 ## TODO
 The following tasks remain before the first version of subpar is released:
@@ -39,7 +38,7 @@ The following tasks remain before the first version of subpar is released:
 - [x] allow more control over figure layout
 - [x] add convenient warppers for common types of super figures
 - [x] add input validation
-- [ ] add a more comprehensive test suite
+- [ ] add more comprehensive tests
 
 [ex]: /examples/example.png
 
@@ -47,3 +46,4 @@ The following tasks remain before the first version of subpar is released:
 
 [#1]: https://github.com/tingerrr/subpar/issues/1
 [#2]: https://github.com/tingerrr/subpar/issues/2
+[#3]: https://github.com/tingerrr/subpar/issues/3
