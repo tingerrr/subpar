@@ -1,17 +1,17 @@
-#import "/src/lib.typ": subpar
+#import "/src/lib.typ": subpar-grid
 
 #set page(height: auto)
 #set par(justify: true)
 
-#subpar(
-  grid(columns: (1fr, 1fr), gutter: 1em,
-    [#figure(image("/assets/andromeda.jpg"), caption: [
-      An image of the andromeda galaxy.
-    ]) <a>],
-    [#figure(image("/assets/mountains.jpg"), caption: [
-      A sunset illuminating the sky above a mountain range.
-    ]) <b>],
-  ),
+#subpar-grid(
+  (figure(image("/assets/andromeda.jpg"), caption: [
+    An image of the andromeda galaxy.
+  ]), <a>),
+  (figure(image("/assets/mountains.jpg"), caption: [
+    A sunset illuminating the sky above a mountain range.
+  ]), <b>),
+  columns: (1fr, 1fr),
+  align: top,
   caption: [A figure composed of two subfigures.],
   label: <full>,
 )

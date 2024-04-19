@@ -125,3 +125,118 @@
     )#label]
   }
 }
+
+/// Provides a convenient wrapper around @@subpar() which puts sub figures in a
+/// grid.
+///
+/// - columns (auto, int, relative, fraction, array): Corresponds to the grid's
+///   `columns` parameter.
+/// - rows (auto, int, relative, fraction, array): Corresponds to the grid's
+///   `rows` parameter.
+/// - gutter (auto, int, relative, fraction, array): Corresponds to the grid's
+///   `gutter` parameter.
+/// - column-gutter (auto, int, relative, fraction, array): Corresponds to the
+///   grid's `column-gutter` parameter.
+/// - row-gutter (auto, int, relative, fraction, array): Corresponds to the
+///   grid's `row-gutter` parameter.
+/// - align (auto, array, alignement, function): Corresponds to the grid's
+///   `align` parameter.
+/// - inset (relaltive, array, dictionary, function): Corresponds to the grid's
+///   `inset` parameter.
+/// - numbering (): Corressponds to the super figure's `numbering`.
+/// - numbering-sub (): Corressponds to the super figure's `numbering-sub`.
+/// - numbering-sub-ref (): Corressponds to the super figure's
+///   `numbering-sub-ref`.
+/// - supplement (): Corressponds to the super figure's `supplement`.
+/// - caption (): Corressponds to the super figure's `caption`.
+/// - placement (): Corressponds to the super figure's `placement`.
+/// - gap (): Corressponds to the super figure's `gap`.
+/// - outlined (): Corressponds to the super figure's `outlined`.
+/// - outlined-sub (): Corressponds to the super figure's `outlined-sub`.
+/// - label (): Corressponds to the super figure's `label`.
+/// - show-sub (): Corressponds to the super figure's `show-sub`.
+/// - show-sub-caption (): Corressponds to the super figure's
+///   `show-sub-caption`.
+/// -> content
+#let subpar-grid(
+  columns: auto,
+  rows: auto,
+  gutter: 1em,
+  column-gutter: auto,
+  row-gutter: auto,
+  align: horizon,
+  inset: (:),
+
+  kind: image,
+
+  numbering: "1",
+  numbering-sub: "(a)",
+  numbering-sub-ref: "1a",
+
+  // TODO: see subpar
+  supplement: [Figure],
+  caption: none,
+  placement: none,
+  gap: 0.65em,
+  outlined: true,
+  outlined-sub: false,
+  label: none,
+
+  show-sub: auto,
+  show-sub-caption: auto,
+  ..args,
+) = {
+  if args.named().len() != 0 {
+    panic("Unexpectd arguments: `" + repr(args.named()) + "`")
+  }
+
+  let figures = args.pos()
+
+  let unwrap-figure(f) = if _pkg.t4t.is.elem(figure, f) {
+    f
+  } else if _pkg.t4t.is.arr(f) and f.len() == 2 and _pkg.t4t.is.elem(figure, f.first()) and _pkg.t4t.is.label(f.last()) {
+    [#f.first()#f.last()]
+  } else {
+    panic("Expected either a figure, or an array containing a figure and a label")
+  }
+
+  // NOTE: the mere existence of an argument seems to change how grid behaves, so we discard any that are auto ourselves
+  let grid-args = (
+    columns: columns,
+    rows: rows,
+    align: align,
+    inset: inset,
+  )
+
+  if gutter != auto {
+    grid-args.gutter = gutter
+  }
+  if column-gutter != auto {
+    grid-args.column-gutter = column-gutter
+  }
+  if row-gutter != auto {
+    grid-args.row-gutter = row-gutter
+  }
+
+  subpar(
+    numbering: numbering,
+    numbering-sub: numbering-sub,
+    numbering-sub-ref: numbering-sub-ref,
+
+    supplement: supplement,
+    caption: caption,
+    placement: placement,
+    gap: gap,
+    outlined: outlined,
+    outlined-sub: outlined-sub,
+    label: label,
+
+    show-sub: show-sub,
+    show-sub-caption: show-sub-caption,
+
+    grid(
+      ..figures.map(unwrap-figure),
+      ..grid-args,
+    ),
+  )
+}
