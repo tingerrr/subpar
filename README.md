@@ -1,7 +1,7 @@
 # subpar
 **NOTE: This package is not yet released and undocumented as I hash out the exact API and work out the kinks. You can help by trying it out locally and reporting issues as you encounter them.**
 
-Subpar is a [Typst] package allowing you to create easily referencable subfigures.
+Subpar is a [Typst] package for creating sub figures.
 
 ```typst
 #import "@preview/subpar:0.0.1": subpar-grid
@@ -21,7 +21,6 @@ Subpar is a [Typst] package allowing you to create easily referencable subfigure
   label: <full>,
 )
 
-
 Above in @full, we see a figure which is composed of 2 other figures, namely @a and @b.
 ```
 ![ex]
@@ -38,7 +37,7 @@ The following tasks remain before the first version of subpar is released:
 - [x] documentation
 - [ ] manual generation
 - [x] allow more control over figure layout
-- [x] add convenient warppers for common types of super figures
+- [x] add convenient wrappers for common types of super figures
 - [x] add input validation
 - [x] add more comprehensive tests
 
