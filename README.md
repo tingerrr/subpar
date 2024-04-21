@@ -40,7 +40,7 @@ The following tasks remain before the first version of subpar is released:
 - [x] allow more control over figure layout
 - [x] add convenient warppers for common types of super figures
 - [x] add input validation
-- [ ] add more comprehensive tests
+- [x] add more comprehensive tests
 
 [ex]: /examples/example.png
 
