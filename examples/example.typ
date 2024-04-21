@@ -4,10 +4,10 @@
 #set par(justify: true)
 
 #subpar-grid(
-  (figure(image("/assets/andromeda.jpg"), caption: [
+  (figure(image("/assets/images/andromeda.jpg"), caption: [
     An image of the andromeda galaxy.
   ]), <a>),
-  (figure(image("/assets/mountains.jpg"), caption: [
+  (figure(image("/assets/images/mountains.jpg"), caption: [
     A sunset illuminating the sky above a mountain range.
   ]), <b>),
   columns: (1fr, 1fr),
