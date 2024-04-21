@@ -47,6 +47,6 @@ jobs:
         with:
           name: 
           path: |
-            home/runner/work/subpar/subpar/test/i18n/diff/**
-            home/runner/work/subpar/subpar/test/i18n/out/**
-            home/runner/work/subpar/subpar/test/i18n/ref/**
+            /home/runner/work/subpar/subpar/test/i18n/diff/**
+            /home/runner/work/subpar/subpar/test/i18n/out/**
+            /home/runner/work/subpar/subpar/test/i18n/ref/**
