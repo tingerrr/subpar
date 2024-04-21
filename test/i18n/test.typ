@@ -4,7 +4,9 @@
 //   auto does
 
 #import "/test/util.typ": *
-#import "/src/lib.typ": subpar, subpar-grid
+#import "/src/lib.typ": subpar-grid
+
+#set text(font: "Noto Serif CJK")
 
 German:
 #set text(lang: "de")
@@ -13,11 +15,10 @@ German:
 
 #figure(fake-image, caption: [Caption]) <normal1>
 
-#subpar(
-  grid(columns: (1fr, 1fr), gutter: 1em, align: horizon,
-    [#figure(fake-image, caption: [Inner caption]) <a>],
-    [#figure(fake-image, caption: [Inner caption]) <b>],
-  ),
+#subpar-grid(
+  (figure(fake-image, caption: [Inner caption]), <a>),
+  (figure(fake-image, caption: [Inner caption]), <b>),
+  columns: (1fr, 1fr),
   caption: [Outer caption],
   label: <full1>,
 )
@@ -43,11 +44,10 @@ Chinese:
 
 #figure(fake-image, caption: [Caption]) <normal2>
 
-#subpar(
-  grid(columns: (1fr, 1fr), gutter: 1em, align: horizon,
-    [#figure(fake-image, caption: [Inner caption]) <c>],
-    [#figure(fake-image, caption: [Inner caption]) <d>],
-  ),
+#subpar-grid(
+  (figure(fake-image, caption: [Inner caption]), <c>),
+  (figure(fake-image, caption: [Inner caption]), <d>),
+  columns: (1fr, 1fr),
   caption: [Outer caption],
   label: <full2>,
 )
