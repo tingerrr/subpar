@@ -6,8 +6,6 @@
 #import "/test/util.typ": *
 #import "/src/lib.typ": subpar-grid
 
-#set text(font: "Noto Serif CJK")
-
 German:
 #set text(lang: "de")
 

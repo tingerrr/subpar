@@ -1,9 +1,16 @@
-export TYPST_ROOT := justfile_directory()
+root := justfile_directory()
+
+export TYPST_ROOT := root
+export TYPST_FONT_PATHS := root / 'assets' / 'fonts'
 
 # list recipes
 [private]
 default:
 	just --list
+
+# run typst with the correct environment variables
+typst *args:
+	typst {{ args }}
 
 # generate the manual
 doc cmd='compile':
