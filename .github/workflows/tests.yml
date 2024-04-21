@@ -42,3 +42,11 @@ jobs:
 
       - name: Run test suite
         run: just ci
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: 
+          path: |
+            home/runner/work/subpar/subpar/test/i18n/diff/**
+            home/runner/work/subpar/subpar/test/i18n/out/**
+            home/runner/work/subpar/subpar/test/i18n/ref/**
