@@ -1,5 +1,4 @@
 #import "/test/util.typ": *
-
 #import "/src/lib.typ": subpar
 
 #let sub-figure-numbering = (super, sub) => numbering("1.1a", counter(heading).get().first(), super, sub)

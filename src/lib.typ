@@ -20,8 +20,8 @@
 /// - numbering-sub-ref (str, function): This is the numbering used for
 ///   _references_ to the sub figures. If this is a function, it receives both
 ///   the super and sub figure numbering respectively.
-/// - supplement (content): The supplement used for this _and_ the inner
-///   figures, this must be set independently of `kind`.
+/// - supplement (content, function, auto, none): The supplement used for this
+///   super figure _and_ the sub figures when referenced.
 /// - caption (content): The caption of this super figure.
 /// - placement (alignement, auto, none): The float placement of this super
 ///   figure.
@@ -43,8 +43,7 @@
   numbering-sub: "(a)",
   numbering-sub-ref: "1a",
 
-  // TODO: somehow resolve this as good as we can for common kinds and for more languages
-  supplement: [Figure],
+  supplement: auto,
   caption: none,
   placement: none,
   gap: 0.65em,
@@ -63,7 +62,7 @@
   _pkg.t4t.assert.any-type(str, function, numbering-sub)
   _pkg.t4t.assert.any-type(str, function, numbering-sub-ref)
 
-  _pkg.t4t.assert.any-type(str, content, supplement)
+  _pkg.t4t.assert.any-type(str, content, function, type(auto), type(none), supplement)
   _pkg.t4t.assert.any-type(str, content, type(none), caption)
   _pkg.t4t.assert.any(top, bottom, auto, none, placement)
   _pkg.t4t.assert.any-type(length, gap)
@@ -73,6 +72,18 @@
 
   _pkg.t4t.assert.any-type(function, type(auto), show-sub)
   _pkg.t4t.assert.any-type(function, type(auto), show-sub-caption)
+
+  let function-kinds = (
+    image: "figure",
+    table: "table",
+    raw: "raw",
+  )
+
+  if supplement == auto and repr(kind) in function-kinds {
+    supplement = context util.i18n-kind(function-kinds.at(repr(kind)))
+  } else {
+    panic("Cannot infer `supplement`, must be set.")
+  }
 
   show-sub = _pkg.t4t.def.if-auto(it => it, show-sub)
   show-sub-caption = _pkg.t4t.def.if-auto((num, it) => {
@@ -151,7 +162,8 @@
 ///   `numbering-sub`.
 /// - numbering-sub-ref (str, function): Corressponds to the super figure's
 ///   `numbering-sub-ref`.
-/// - supplement (content): Corressponds to the super figure's `supplement`.
+/// - supplement (content, function, auto, none): Corressponds to the super
+///   figure's `supplement`.
 /// - caption (content): Corressponds to the super figure's `caption`.
 /// - placement (alignement, auto, none): Corressponds to the super figure's
 ///   `placement`.
@@ -178,8 +190,7 @@
   numbering-sub: "(a)",
   numbering-sub-ref: "1a",
 
-  // TODO: see subpar
-  supplement: [Figure],
+  supplement: auto,
   caption: none,
   placement: none,
   gap: 0.65em,

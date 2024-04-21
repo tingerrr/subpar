@@ -1,5 +1,4 @@
 #import "/test/util.typ": *
-
 #import "/src/lib.typ": subpar, subpar-grid
 
 #outline(target: figure.where(kind: image))

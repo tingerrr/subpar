@@ -28,7 +28,9 @@ Above in @full, we see a figure which is composed of 2 other figures, namely @a 
 
 ## Known Issues
 - [x] Relative numbering is incorrect for super-figures, see [#1]
-- [ ] Supplement is always "Figure", regardless of `text.lang`, see: [#2]
+- [x] Supplement is always "Figure", regardless of `text.lang`, see: [#2]
+  - [ ] Multilingual documents which refer to a figure from a section with a different language
+    will have references in the current language instead
 - [ ] Sub figure captions are not vertically aligned, see [#3]
 
 ## TODO

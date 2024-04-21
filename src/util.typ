@@ -22,3 +22,25 @@
 
   (image, raw, table)
 }
+
+#let i18n-kind(kind) = {
+  let map = toml("/assets/i18n.toml")
+
+  if kind not in map.en {
+    panic("Unknown kind: `" + kind + "`")
+  }
+
+  let lang-map = map.at(text.lang, default: (:))
+  let region-map = if text.region != none { lang-map.at(text.region, default: (:)) } else { (:) }
+  let term = region-map.at(kind, default: none)
+
+  if term == none {
+    term = lang-map.at(kind, default: none)
+  }
+
+  if term == none {
+    term = map.en.at(kind)
+  }
+
+  term
+}
