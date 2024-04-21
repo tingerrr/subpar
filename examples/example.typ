@@ -16,4 +16,4 @@
   label: <full>,
 )
 
-Above in @full, we see a figure which is composed of 2 other figures, namely @a and @b.
+Above in @full, we see a figure which is composed of two other figures, namely @a and @b.
