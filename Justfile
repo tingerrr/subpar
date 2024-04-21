@@ -24,4 +24,4 @@ update filter='':
 
 # run the ci test suite
 ci: examples
-	typst-test run || true
+	typst-test run
