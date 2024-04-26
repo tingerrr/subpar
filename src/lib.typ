@@ -32,7 +32,7 @@
 ///   figures.
 /// - outlined-sub (bool): Whether the sub figures should appear in an outline
 ///   of figures.
-/// - label (label): The label to attach to this super figure.
+/// - label (label, none): The label to attach to this super figure.
 /// - show-sub (function, auto): A show rule override for sub figures. Recevies
 ///   the sub figure.
 /// - show-sub-caption (function, auto): A show rule override for sub figure's
@@ -72,7 +72,7 @@
   _pkg.t4t.assert.any-type(length, gap)
   _pkg.t4t.assert.any-type(bool, outlined)
   _pkg.t4t.assert.any-type(bool, outlined-sub)
-  _pkg.t4t.assert.any-type(_label, label)
+  _pkg.t4t.assert.any-type(_label, type(none), label)
 
   _pkg.t4t.assert.any-type(function, type(auto), show-sub)
   _pkg.t4t.assert.any-type(function, type(auto), show-sub-caption)
