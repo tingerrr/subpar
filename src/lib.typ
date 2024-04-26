@@ -93,11 +93,7 @@
   }
 
   show-sub = _pkg.t4t.def.if-auto(it => it, show-sub)
-  show-sub-caption = _pkg.t4t.def.if-auto((num, it) => {
-    num
-    [ ]
-    it.body
-  }, show-sub-caption)
+  show-sub-caption = _pkg.t4t.def.if-auto((num, it) => it, show-sub-caption)
 
   context {
     let n-super = counter(figure.where(kind: kind)).get().first() + 1
@@ -128,6 +124,11 @@
         show figure: show-sub
         show figure: it => {
           let n-sub = sub-figure-counter.get().first() + 1
+          show figure.caption: it => {
+            _numbering(numbering-sub, n-sub)
+            [ ]
+            it.body
+          }
           show figure.caption: show-sub-caption.with(_numbering(numbering-sub, n-sub))
 
           sub-figure-counter.step()
