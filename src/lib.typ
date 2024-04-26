@@ -25,7 +25,7 @@
 /// - propagate-supplement (bool): Whether the super figure's supplement should
 ///   propagate down to its sub figures.
 /// - caption (content): The caption of this super figure.
-/// - placement (alignement, auto, none): The float placement of this super
+/// - placement (alignment, auto, none): The float placement of this super
 ///   figure.
 /// - gap (length): The gap between this super figure's caption and body.
 /// - outlined (bool): Whether this super figure should appear in an outline of
@@ -155,9 +155,9 @@
 ///   grid's `column-gutter` parameter.
 /// - row-gutter (auto, int, relative, fraction, array): Corresponds to the
 ///   grid's `row-gutter` parameter.
-/// - align (auto, array, alignement, function): Corresponds to the grid's
+/// - align (auto, array, alignment, function): Corresponds to the grid's
 ///   `align` parameter.
-/// - inset (relaltive, array, dictionary, function): Corresponds to the grid's
+/// - inset (relative, array, dictionary, function): Corresponds to the grid's
 ///   `inset` parameter.
 /// - kind (str, function): Corressponds to the super figure's `kind`.
 /// - numbering (str, function): Corressponds to the super figure's
@@ -171,7 +171,7 @@
 /// - propagate-supplement (bool): Corressponds to the super figure's
 ///   `propagate-supplement`.
 /// - caption (content): Corressponds to the super figure's `caption`.
-/// - placement (alignement, auto, none): Corressponds to the super figure's
+/// - placement (alignment, auto, none): Corressponds to the super figure's
 ///   `placement`.
 /// - gap (length): Corressponds to the super figure's `gap`.
 /// - outlined (bool): Corressponds to the super figure's `outlined`.
