@@ -46,14 +46,14 @@ Contributions are also welcome!
 
 = Guide
 == Labeling
-Currently to refer to a super figure the label must be explicitly passed to `subpar` using `label: <...>`.
+Currently to refer to a super figure the label must be explicitly passed to `super` using `label: <...>`.
 
 == Grid Layout
-The default `subpar` function provides only the style rules to make sub figures correctly behave with respect to numbering.
+The default `super` function provides only the style rules to make sub figures correctly behave with respect to numbering.
 To arrange them in a specific layout, you can use any other Typst function, a common choice would be `grid`.
 
 #mantys.example[```typst
-#subpar.subpar(
+#subpar.super(
   grid(
     [#figure([a], caption: [An image]) <fig1a>],
     [#figure([b], caption: [Another image]) <fig1b>],
@@ -67,7 +67,7 @@ To arrange them in a specific layout, you can use any other Typst function, a co
 We can refer to @fig1, @fig1a and @fig1b.
 ```]
 
-Because this quickly gets cumbersome, subpar provides a default grid layout wrapper called `subpar-grid`.
+Because this quickly gets cumbersome, subpar provides a default grid layout wrapper called `grid`.
 It provides good defaults like `gutter: 1em` and hides options which are undesireable for sub figure layouts like `fill` and `stroke`.
 To label sub figures simply add a label after a figure like below.
 

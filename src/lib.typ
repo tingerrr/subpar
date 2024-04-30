@@ -41,7 +41,7 @@
 /// - show-sub-caption (function, auto): A show rule override for sub figure's
 ///   captions. Receives the realized numbering and caption element.
 /// -> content
-#let subpar(
+#let super(
   kind: image,
 
   numbering: "1",
@@ -151,7 +151,7 @@
   }
 }
 
-/// Provides a convenient wrapper around @@subpar() which puts sub figures in a
+/// Provides a convenient wrapper around @@super() which puts sub figures in a
 /// grid.
 ///
 /// - columns (auto, int, relative, fraction, array): Corresponds to the grid's
@@ -258,7 +258,7 @@
     grid-args.row-gutter = row-gutter
   }
 
-  subpar(
+  super(
     numbering: numbering,
     numbering-sub: numbering-sub,
     numbering-sub-ref: numbering-sub-ref,
