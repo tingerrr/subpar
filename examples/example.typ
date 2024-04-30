@@ -1,9 +1,9 @@
-#import "/src/lib.typ": subpar-grid
+#import "/src/lib.typ" as subpar
 
 #set page(height: auto)
 #set par(justify: true)
 
-#subpar-grid(
+#subpar.grid(
   figure(image("/assets/images/andromeda.jpg"), caption: [
     An image of the andromeda galaxy.
   ]), <a>,
