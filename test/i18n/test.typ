@@ -4,7 +4,7 @@
 //   auto does
 
 #import "/test/util.typ": *
-#import "/src/lib.typ": subpar-grid
+#import "/src/lib.typ" as subpar
 
 German:
 #set text(lang: "de")
@@ -13,7 +13,7 @@ German:
 
 #figure(fake-image, caption: [Caption]) <normal1>
 
-#subpar-grid(
+#subpar.grid(
   figure(fake-image, caption: [Inner caption]), <a>,
   figure(fake-image, caption: [Inner caption]), <b>,
   columns: (1fr, 1fr),
@@ -42,7 +42,7 @@ Chinese:
 
 #figure(fake-image, caption: [Caption]) <normal2>
 
-#subpar-grid(
+#subpar.grid(
   figure(fake-image, caption: [Inner caption]), <c>,
   figure(fake-image, caption: [Inner caption]), <d>,
   columns: (1fr, 1fr),

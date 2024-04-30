@@ -3,13 +3,13 @@
 // - the super figure supplement is propagated down to sub figures
 
 #import "/test/util.typ": *
-#import "/src/lib.typ": subpar-grid
+#import "/src/lib.typ" as subpar
 
 #outline(target: figure.where(kind: image))
 
 #figure(fake-image, caption: [aaa])
 
-#subpar-grid(
+#subpar.grid(
   figure(fake-image, caption: [Inner caption]),<a>,
   figure(fake-image, caption: [Inner caption]),<b>,
   columns: (1fr, 1fr),
@@ -19,7 +19,7 @@
 
 #figure(fake-image, caption: [aaa])
 
-#subpar-grid(
+#subpar.grid(
   figure(`adas`, caption: [Inner caption]), <c>,
   figure(fake-image, caption: [Inner caption]), <d>,
   columns: (1fr, 1fr),

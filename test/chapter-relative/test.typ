@@ -3,7 +3,7 @@
 //   numbering and supplements
 
 #import "/test/util.typ": *
-#import "/src/lib.typ": subpar-grid
+#import "/src/lib.typ" as subpar
 
 #let sub-figure-numbering = (super, sub) => numbering("1.1a", counter(heading).get().first(), super, sub)
 #let figure-numbering = super => numbering("1.1", counter(heading).get().first(), super)
@@ -12,7 +12,7 @@
 #show heading.where(level: 1): it => counter(figure.where(kind: image)).update(0) + it
 #show figure.where(kind: image): set figure(numbering: figure-numbering)
 
-#let subpar-grid = subpar-grid.with(
+#let subpar-grid = subpar.grid.with(
   numbering: figure-numbering,
   numbering-sub-ref: sub-figure-numbering,
 )
