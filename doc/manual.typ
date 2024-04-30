@@ -93,7 +93,7 @@ We can refer to @fig, @fig1 and @fig2.
 / `numbering-sub`: The numbering used for the sub figures when displayed.
 / `numbering-sub-ref`: The numbering used for the sub figures when referenced.
 
-Similarly to a normal figure, these can be functions to allow for numbering them.
+Similarly to a normal figure, these can be functions or string patterns. The `numbering-sub` and `numbering-sub-ref` patterns will receive both the super figure an sub figure number.
 
 == Supplements
 Currently, supplements for super figures propagate down to super figures, this ensures that the supplement in a reference will not confuse a reader, but it will cause reference issues in multilingual documents (see #issue(4)).

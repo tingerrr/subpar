@@ -65,6 +65,10 @@
   _pkg.t4t.assert.any-type(str, function, numbering-sub)
   _pkg.t4t.assert.any-type(str, function, numbering-sub-ref)
 
+  // adjust numberings to receive either both or the sub number
+  numbering-sub = _util.sparse-numbering(numbering-sub)
+  numbering-sub-ref = _util.sparse-numbering(numbering-sub-ref)
+
   _pkg.t4t.assert.any-type(str, content, function, type(auto), type(none), supplement)
   _pkg.t4t.assert.any-type(bool, propagate-supplement)
   _pkg.t4t.assert.any-type(str, content, type(none), caption)

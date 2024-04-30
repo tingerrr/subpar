@@ -1,5 +1,7 @@
 #import "_pkg.typ"
 
+#let _numbering = numbering
+
 #let apply-for-all(
   values,
   rule,
@@ -68,4 +70,18 @@
   }
 
   pairs
+}
+
+#let sparse-numbering(numbering) = if type(numbering) == str {
+  let symbols = ("1", "a", "A", "i", "I", "い", "イ", "א", "가", "ㄱ", "\\*")
+  let c =  numbering.matches(regex(symbols.join("|"))).len()
+
+  if c == 1 {
+    // if we have only one symbol we drop the super number
+    (_, num) => _numbering(numbering, num)
+  } else {
+    (..nums) => _numbering(numbering, ..nums)
+  }
+} else {
+  numbering
 }
