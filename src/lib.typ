@@ -3,12 +3,15 @@
 
 #let _numbering = numbering
 #let _label = label
+#let _grid = grid
 
 /// The counter used for sub figures.
 #let sub-figure-counter = counter("__subpar:sub-figure-counter")
 
 /// Creates a figure which may contain other figures, a #emph[super]figure. For
 /// the meaning of parameters take a look at the regular figure documentation.
+///
+/// See @@grid() for a function which places its sub figures in a grid.
 ///
 /// - kind (str, function): The image kind which should be used, this is mainly
 ///   relevant for introspection and defaults to `image`. This cannot be
@@ -187,7 +190,7 @@
 /// - show-sub-caption (function): Corressponds to the super figure's
 ///   `show-sub-caption`.
 /// -> content
-#let subpar-grid(
+#let grid(
   columns: auto,
   rows: auto,
   gutter: 1em,
@@ -272,7 +275,7 @@
     show-sub: show-sub,
     show-sub-caption: show-sub-caption,
 
-    grid(
+    _grid(
       .._util.stitch-pairs(figures).map(((f, l)) => [#f#l]),
       ..grid-args,
     ),
