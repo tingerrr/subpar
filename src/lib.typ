@@ -124,12 +124,13 @@
         show figure: show-sub
         show figure: it => {
           let n-sub = sub-figure-counter.get().first() + 1
+          let num = _numbering(numbering-sub, n-super, n-sub)
           show figure.caption: it => {
-            _numbering(numbering-sub, n-sub)
+            num
             [ ]
             it.body
           }
-          show figure.caption: show-sub-caption.with(_numbering(numbering-sub, n-sub))
+          show figure.caption: show-sub-caption.with(num)
 
           sub-figure-counter.step()
           it
