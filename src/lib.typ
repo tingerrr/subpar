@@ -1,4 +1,4 @@
-#import "util.typ"
+#import "util.typ" as _util
 #import "_pkg.typ"
 
 #let _numbering = numbering
@@ -86,7 +86,7 @@
   // NOTE: if we use no propagation, then we can fallback to the normal auto behavior, fixing #4.
   if propagate-supplement {
     if supplement == auto and repr(kind) in function-kinds {
-      supplement = context util.i18n-kind(function-kinds.at(repr(kind)))
+      supplement = context _util.i18n-kind(function-kinds.at(repr(kind)))
     } else {
       panic("Cannot infer `supplement`, must be set.")
     }
@@ -108,8 +108,8 @@
       outlined: outlined,
       {
         // TODO: simply setting it for all doesn't seem to work
-        show: util.apply-for-all(
-          util.gather-kinds(body),
+        show: _util.apply-for-all(
+          _util.gather-kinds(body),
           kind => inner => {
             show figure.where(kind: kind): set figure(numbering: _ => _numbering(
               numbering-sub-ref, n-super, sub-figure-counter.get().first() + 1
@@ -268,7 +268,7 @@
     show-sub-caption: show-sub-caption,
 
     grid(
-      ..figures.map(unwrap-figure),
+      .._util.stitch-pairs(figures).map(((f, l)) => [#f#l]),
       ..grid-args,
     ),
   )

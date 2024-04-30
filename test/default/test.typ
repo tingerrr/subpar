@@ -10,8 +10,8 @@
 #figure(fake-image, caption: [aaa])
 
 #subpar-grid(
-  (figure(fake-image, caption: [Inner caption]),<a>),
-  (figure(fake-image, caption: [Inner caption]),<b>),
+  figure(fake-image, caption: [Inner caption]),<a>,
+  figure(fake-image, caption: [Inner caption]),<b>,
   columns: (1fr, 1fr),
   caption: [Outer caption],
   label: <full1>,
@@ -20,8 +20,8 @@
 #figure(fake-image, caption: [aaa])
 
 #subpar-grid(
-  (figure(`adas`, caption: [Inner caption]), <c>),
-  (figure(fake-image, caption: [Inner caption]), <d>),
+  figure(`adas`, caption: [Inner caption]), <c>,
+  figure(fake-image, caption: [Inner caption]), <d>,
   columns: (1fr, 1fr),
   caption: [Outer caption],
   label: <full2>,

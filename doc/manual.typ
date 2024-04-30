@@ -1,4 +1,4 @@
-#import "@preview/mantys:0.1.1": *
+#import "@local/mantys:0.1.3" as mantys
 #import "@preview/hydra:0.4.0": hydra
 
 #import "/src/lib.typ": subpar-grid
@@ -10,7 +10,9 @@
   link("https://github.com/tingerrr/subpar/issues/" + str(n))[subpar\##n],
 )
 
-#show: mantys.with(
+#show "Subpar": mantys.package
+
+#show: mantys.mantys.with(
   ..package,
   title: [subpar],
   date: datetime.today().display(),
@@ -25,17 +27,6 @@
   it
 }
 
-// Fix mantys header
-#set page(header: {
-  let section = context hydra(2, display: (_, it) => {
-    numbering("1.1", ..counter(heading).at(it.location()))
-    [ ]
-    it.body
-  })
-
-  align(center, emph(section))
-})
-
 = Manifest
 Subpar aims to be:
 - simple to use
@@ -45,7 +36,7 @@ Subpar aims to be:
   - parameters should have sensible names and behave as one would expect
   - deviations from this must be documented and easily accesible to Typst novices
 - interoperable
-  - subpar should be easy to use with other packages by default or provide sufficient configuration to allow this in other ways
+  - Subpar should be easy to use with other packages by default or provide sufficient configuration to allow this in other ways
 - minimal
   - it should only provide features which are specifically used for sub figures
 
@@ -65,10 +56,10 @@ To arrange them in a specific layout, you can use any other Typst function, a co
 
 #subpar(
   grid(
-    columns: (1fr,) * 3,
     [#figure(image("image1.png"), caption: [An image]) <a>],
     [#figure(image("image2.png"), caption: [Another image]) <b>],
     figure(image("image2.png"), caption: [A third unlabeled image]),
+    columns: (1fr,) * 3,
   )
   caption: [A figure composed of three sub figures.],
   label: <fig>,
@@ -85,12 +76,12 @@ You can pass labeled sub figures as arrays of the figure and its label.
 #import "@preview/subpar:{{VERSION}}": subpar-grid
 
 #subpar-grid(
+  figure(image("image1.png"), caption: [An image]), <a>,
+  figure(image("image2.png"), caption: [Another image]), <b>,
+  figure(image("image2.png"), caption: [A third unlabeled image]),
   columns: (1fr,) * 3,
   caption: [A figure composed of three sub figures.],
   label: <fig>,
-  (figure(image("image1.png"), caption: [An image]), <a>),
-  (figure(image("image2.png"), caption: [Another image]), <b>),
-  figure(image("image2.png"), caption: [A third unlabeled image]),
 )
 
 We can refer to @fig, @fig1 and @fig2.
@@ -109,12 +100,12 @@ Currently, supplements for super figures propagate down to super figures, this e
 
 #subpar-grid(
   columns: (1fr, 1fr),
-  (figure(
+  figure(
     ```typst
     Hello Typst!
     ```,
     caption: [Typst Code],
-  ), <sup-ex-code>),
+  ), <sup-ex-code>,
   figure(
     lorem(10),
     caption: [Lorem],
@@ -130,12 +121,12 @@ To turn this behavior off, set `propagate-supplement` to `false`, this will also
 #subpar-grid(
   columns: (1fr, 1fr),
   propagate-supplement: false,
-  (figure(
+  figure(
     ```typst
     Hello Typst!
     ```,
     caption: [Typst Code],
-  ), <sup-ex-no-prop-code>),
+  ), <sup-ex-no-prop-code>,
   figure(
     lorem(10),
     caption: [Lorem],
@@ -147,4 +138,4 @@ To turn this behavior off, set `propagate-supplement` to `false`, this will also
 Now when refering the the super figure we see still see "@sup-ex-no-prop-super", but when refering to the sub figure of a different kind, we the inferred supplement "@sup-ex-no-prop-code".
 
 = Reference
-#tidy-module(read("/src/lib.typ"), name: "subpar")
+#mantys.tidy-module(read("/src/lib.typ"), name: "subpar")

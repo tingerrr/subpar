@@ -44,3 +44,28 @@
 
   term
 }
+
+#let stitch-pairs(args) = {
+  if args.len() == 0 {
+    return ()
+  }
+
+  assert.ne(type(args.first()), label, message: "First item must not be a label")
+
+  let pairs = ()
+  while args.len() != 0 {
+    let item = args.remove(0)
+    if type(item) == label {
+      let last = pairs.pop()
+
+      assert.ne(type(last), label, message: "Cannot have two consecutive labels")
+
+      last.at(1) = item
+      pairs.push(last)
+    } else {
+      pairs.push((item, none))
+    }
+  }
+
+  pairs
+}
