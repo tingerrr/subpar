@@ -3,7 +3,7 @@
 //   numbering and supplements
 
 #import "/test/util.typ": *
-#import "/src/lib.typ": subpar
+#import "/src/lib.typ" as subpar
 
 #let sub-figure-numbering = (super, sub) => numbering("1.1a", counter(heading).get().first(), super, sub)
 #let figure-numbering = super => numbering("1.1", counter(heading).get().first(), super)
@@ -12,7 +12,7 @@
 #show heading.where(level: 1): it => counter(figure.where(kind: image)).update(0) + it
 #show figure.where(kind: image): set figure(numbering: figure-numbering)
 
-#let subpar = subpar.with(
+#let subpar-grid = subpar.grid.with(
   numbering: figure-numbering,
   numbering-sub-ref: sub-figure-numbering,
 )
@@ -23,35 +23,27 @@
 
 #figure(fake-image, caption: [aaa])
 
-#subpar(
-  grid(columns: (1fr, 1fr),
-    [#figure(fake-image, caption: [Inner caption]) <a>],
-    [#figure(fake-image, caption: [Inner caption]) <b>],
-  ),
+#subpar-grid(
+  figure(fake-image, caption: [Inner caption]), <a>,
+  figure(fake-image, caption: [Inner caption]), <b>,
+  columns: (1fr, 1fr),
   caption: [Outer caption],
   label: <full1>,
 )
 
-#figure(
-  fake-image,
-  caption: [aaa],
-)
+#figure(fake-image, caption: [aaa])
 
-#subpar(
-  grid(columns: (1fr, 1fr),
-    [#figure(`adas`, caption: [Inner caption]) <c>],
-    [#figure(fake-image, caption: [Inner caption]) <d>],
-  ),
+#subpar-grid(
+  figure(`adas`, caption: [Inner caption]), <c>,
+  figure(fake-image, caption: [Inner caption]), <d>,
+  columns: (1fr, 1fr),
   caption: [Outer caption],
   label: <full2>,
 )
 
 = Another Chapter
 
-#figure(
-  fake-image,
-  caption: [aaa],
-)
+#figure(fake-image, caption: [aaa])
 
 See @full1, @a and @b.
 
