@@ -144,6 +144,13 @@ These work similar to show rules, i.e. they receive the element they apply to an
 ```]
 
 Unfortunately, to change how a super figure is shown without changing how a sub figure is shown you must use a regular show rule and reconstruct the normal appearance in the sub figures using `show-sub`.
+Subpar provides a default implementation for this: `subpar.default.show-figure`, it can be passed directly to `show-sub`.
 
 = Reference
+== Subpar
+The package entry point.
 #mantys.tidy-module(read("/src/lib.typ"), name: "subpar")
+
+== Default
+Contains default implementations for show rules to easily reverse show rules in a scope.
+#mantys.tidy-module(read("/src/default.typ"), name: "default")

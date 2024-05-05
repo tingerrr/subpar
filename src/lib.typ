@@ -1,5 +1,6 @@
 #import "util.typ" as _util
 #import "_pkg.typ"
+#import "default.typ"
 
 #let _numbering = numbering
 #let _label = label

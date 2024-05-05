@@ -1,5 +1,7 @@
 # [unreleased](https://github.com/tingerrr/subpar/releases/tags/)
 ## Added
+- Default implementations for figure show rules
+- Manual examples about changing the figure appearances
 
 ## Removed
 
