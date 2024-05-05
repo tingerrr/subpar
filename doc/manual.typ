@@ -10,14 +10,12 @@
   link("https://github.com/tingerrr/subpar/issues/" + str(n))[subpar\##n],
 )
 
-#show "Subpar": mantys.package
-
 #show: mantys.mantys.with(
   ..package,
   title: [subpar],
   date: datetime.today().display(),
   abstract: [
-    Subpar provides easy to use sub figures with sensible default numbering and an easy-to-use
+    SUBPAR provides easy to use sub figures with sensible default numbering and an easy-to-use
     no-setup API.
   ],
   examples-scope: (subpar: subpar),
@@ -29,7 +27,7 @@
 }
 
 = Manifest
-Subpar aims to be:
+SUBPAR aims to be:
 - simple to use
   - importing a function and using it should be all that is needed
   - setup required to make the package work should be avoided
@@ -37,7 +35,7 @@ Subpar aims to be:
   - parameters should have sensible names and behave as one would expect
   - deviations from this must be documented and easily accesible to Typst novices
 - interoperable
-  - Subpar should be easy to use with other packages by default or provide sufficient configuration to allow this in other ways
+  - SUBPAR should be easy to use with other packages by default or provide sufficient configuration to allow this in other ways
 - minimal
   - it should only provide features which are specifically used for sub figures
 
@@ -67,7 +65,7 @@ To arrange them in a specific layout, you can use any other Typst function, a co
 We can refer to @fig1, @fig1a and @fig1b.
 ```]
 
-Because this quickly gets cumbersome, subpar provides a default grid layout wrapper called `grid`.
+Because this quickly gets cumbersome, SUBPAR provides a default grid layout wrapper called `grid`.
 It provides good defaults like `gutter: 1em` and hides options which are undesireable for sub figure layouts like `fill` and `stroke`.
 To label sub figures simply add a label after a figure like below.
 
@@ -121,6 +119,31 @@ To turn this behavior off, set `propagate-supplement` to `false`, this will also
 ````]
 
 Now when refering the the super figure we see still see "@sup-ex-super2", but when refering to the sub figure of a different kind, we the inferred supplement "@sup-ex-code2".
+
+== Appearance
+The `super` and `grid` functions come with a few arguments to control how super or sub figures are rendered.
+These work similar to show rules, i.e. they receive the element they apply to and display them.
+/ `show-sub`: Apply a show rule to all sub figures.
+/ `show-sub-caption`: Apply a show rule to all sub figures' captions.
+
+#mantys.example[```typst
+#subpar.grid(
+  figure(lorem(2), caption: [An Image of ...]),
+  figure(lorem(2), caption: [Another Image of ...]),
+  numbering-sub: "1a",
+  show-sub-caption: (num, it) => {
+    it.supplement
+    [ ]
+    num
+    [: ]
+    it.body
+  },
+  columns: 2,
+  caption: [Two Figures],
+)
+```]
+
+Unfortunately, to change how a super figure is shown without changing how a sub figure is shown you must use a regular show rule and reconstruct the normal appearance in the sub figures using `show-sub`.
 
 = Reference
 #mantys.tidy-module(read("/src/lib.typ"), name: "subpar")
