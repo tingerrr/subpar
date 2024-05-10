@@ -232,14 +232,6 @@
 
   let figures = args.pos()
 
-  let unwrap-figure(f) = if _pkg.t4t.is.elem(figure, f) {
-    f
-  } else if _pkg.t4t.is.arr(f) and f.len() == 2 and _pkg.t4t.is.elem(figure, f.first()) and _pkg.t4t.is.label(f.last()) {
-    [#f.first()#f.last()]
-  } else {
-    panic("Expected either a figure, or an array containing a figure and a label")
-  }
-
   // NOTE: the mere existence of an argument seems to change how grid behaves, so we discard any that are auto ourselves
   let grid-args = (
     columns: columns,
