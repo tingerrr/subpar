@@ -11,23 +11,23 @@ German:
 
 #outline(target: figure.where(kind: image))
 
-#figure(fake-image, caption: [Caption]) <normal1>
+#figure(fake-image, caption: [Regular]) <normal1>
 
 #subpar.grid(
   figure(fake-image, caption: [Inner caption]), <a>,
   figure(fake-image, caption: [Inner caption]), <b>,
   columns: (1fr, 1fr),
-  caption: [Outer caption],
+  caption: [Super],
   label: <full1>,
 )
 
-First
+German
 - @normal1
 - @full1
 - @a
 - @b
 
-Second
+English
 - @normal2
 - @full2
 - @c
@@ -35,28 +35,28 @@ Second
 
 #pagebreak()
 
-Chinese:
-#set text(lang: "zh", region: "tw")
+English:
+#set text(lang: "en")
 
 #outline(target: figure.where(kind: image))
 
-#figure(fake-image, caption: [Caption]) <normal2>
+#figure(fake-image, caption: [Regular]) <normal2>
 
 #subpar.grid(
   figure(fake-image, caption: [Inner caption]), <c>,
   figure(fake-image, caption: [Inner caption]), <d>,
   columns: (1fr, 1fr),
-  caption: [Outer caption],
+  caption: [Super],
   label: <full2>,
 )
 
-First
+German
 - @normal1
 - @full1
 - @a
 - @b
 
-Second
+English
 - @normal2
 - @full2
 - @c
