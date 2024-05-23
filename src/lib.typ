@@ -65,9 +65,10 @@
 ) = {
   _pkg.t4t.assert.any-type(str, function, kind)
 
-  _pkg.t4t.assert.any-type(str, function, numbering)
-  _pkg.t4t.assert.any-type(str, function, numbering-sub)
-  _pkg.t4t.assert.any-type(str, function, numbering-sub-ref)
+  let assert-numbering = _pkg.t4t.assert.any-type.with(str, function)
+  assert-numbering(numbering)
+  assert-numbering(numbering-sub)
+  assert-numbering(numbering-sub-ref)
 
   // adjust numberings to receive either both or the sub number
   numbering-sub = _util.sparse-numbering(numbering-sub)
@@ -219,11 +220,13 @@
   show-sub-caption: auto,
   ..args,
 ) = {
-  _pkg.t4t.assert.any-type(type(auto), int, length, relative, fraction, array, columns)
-  _pkg.t4t.assert.any-type(type(auto), int, length, relative, fraction, array, rows)
-  _pkg.t4t.assert.any-type(type(auto), int, length, relative, fraction, array, gutter)
-  _pkg.t4t.assert.any-type(type(auto), int, length, relative, fraction, array, column-gutter)
-  _pkg.t4t.assert.any-type(type(auto), int, length, relative, fraction, array, row-gutter)
+  let assert-arg = _pkg.t4t.assert.any-type.with(type(auto), int, length, relative, fraction, array)
+  assert-arg(columns)
+  assert-arg(rows)
+  assert-arg(gutter)
+  assert-arg(column-gutter)
+  assert-arg(row-gutter)
+
   _pkg.t4t.assert.any-type(type(auto), array, alignment, function, align)
   _pkg.t4t.assert.any-type(length, relative, array, dictionary, function, inset)
 
