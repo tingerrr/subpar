@@ -93,8 +93,8 @@
   )
 
   // NOTE: if we use no propagation, then we can fallback to the normal auto behavior, fixing #4.
-  if propagate-supplement {
-    if supplement == auto and repr(kind) in function-kinds {
+  if propagate-supplement and supplement == auto {
+    if repr(kind) in function-kinds {
       supplement = context _util.i18n-kind(function-kinds.at(repr(kind)))
     } else {
       panic("Cannot infer `supplement`, must be set.")
