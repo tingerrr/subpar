@@ -2,7 +2,7 @@
 Subpar is a [Typst] package for creating sub figures.
 
 ```typst
-#import "@preview/subpar:0.1.0"
+#import "@preview/subpar:0.1.1"
 
 #set page(height: auto)
 #set par(justify: true)
