@@ -65,9 +65,10 @@
 ) = {
   _pkg.t4t.assert.any-type(str, function, kind)
 
-  _pkg.t4t.assert.any-type(str, function, numbering)
-  _pkg.t4t.assert.any-type(str, function, numbering-sub)
-  _pkg.t4t.assert.any-type(str, function, numbering-sub-ref)
+  let assert-numbering = _pkg.t4t.assert.any-type.with(str, function)
+  assert-numbering(numbering)
+  assert-numbering(numbering-sub)
+  assert-numbering(numbering-sub-ref)
 
   // adjust numberings to receive either both or the sub number
   numbering-sub = _util.sparse-numbering(numbering-sub)
@@ -92,8 +93,8 @@
   )
 
   // NOTE: if we use no propagation, then we can fallback to the normal auto behavior, fixing #4.
-  if propagate-supplement {
-    if supplement == auto and repr(kind) in function-kinds {
+  if propagate-supplement and supplement == auto {
+    if repr(kind) in function-kinds {
       supplement = context _util.i18n-kind(function-kinds.at(repr(kind)))
     } else {
       panic("Cannot infer `supplement`, must be set.")
@@ -219,11 +220,13 @@
   show-sub-caption: auto,
   ..args,
 ) = {
-  _pkg.t4t.assert.any-type(type(auto), int, length, relative, fraction, array, columns)
-  _pkg.t4t.assert.any-type(type(auto), int, length, relative, fraction, array, rows)
-  _pkg.t4t.assert.any-type(type(auto), int, length, relative, fraction, array, gutter)
-  _pkg.t4t.assert.any-type(type(auto), int, length, relative, fraction, array, column-gutter)
-  _pkg.t4t.assert.any-type(type(auto), int, length, relative, fraction, array, row-gutter)
+  let assert-arg = _pkg.t4t.assert.any-type.with(type(auto), int, length, relative, fraction, array)
+  assert-arg(columns)
+  assert-arg(rows)
+  assert-arg(gutter)
+  assert-arg(column-gutter)
+  assert-arg(row-gutter)
+
   _pkg.t4t.assert.any-type(type(auto), array, alignment, function, align)
   _pkg.t4t.assert.any-type(length, relative, array, dictionary, function, inset)
 
@@ -252,6 +255,7 @@
   }
 
   super(
+    kind: kind,
     numbering: numbering,
     numbering-sub: numbering-sub,
     numbering-sub-ref: numbering-sub-ref,

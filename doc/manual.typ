@@ -1,4 +1,4 @@
-#import "@local/mantys:0.1.3" as mantys
+#import "@local/mantys:0.1.4" as mantys
 #import "@preview/hydra:0.4.0": hydra
 
 #import "/src/lib.typ" as subpar
