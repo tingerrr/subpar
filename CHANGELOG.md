@@ -7,6 +7,9 @@
 
 ## Changed
 
+## Fixed
+- non-image kinds are correctly used in `subpar.grid`
+
 ---
 
 # [v0.1.0](https://github.com/tingerrr/subpar/releases/tag/v0.1.0)

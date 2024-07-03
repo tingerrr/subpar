@@ -255,6 +255,7 @@
   }
 
   super(
+    kind: kind,
     numbering: numbering,
     numbering-sub: numbering-sub,
     numbering-sub-ref: numbering-sub-ref,
