@@ -24,27 +24,36 @@
 #figure(fake-image, caption: [aaa])
 
 #subpar-grid(
-  figure(fake-image, caption: [Inner caption]), <a>,
-  figure(fake-image, caption: [Inner caption]), <b>,
+  figure(fake-image, caption: [Inner caption]), <1a>,
+  figure(fake-image, caption: [Inner caption]), <1b>,
   columns: (1fr, 1fr),
   caption: [Outer caption],
-  label: <full1>,
+  label: <1>,
 )
 
 #figure(fake-image, caption: [aaa])
 
 #subpar-grid(
-  figure(`adas`, caption: [Inner caption]), <c>,
-  figure(fake-image, caption: [Inner caption]), <d>,
+  figure(`adas`, caption: [Inner caption]), <2a>,
+  figure(fake-image, caption: [Inner caption]), <2b>,
   columns: (1fr, 1fr),
   caption: [Outer caption],
-  label: <full2>,
+  label: <2>,
 )
 
 = Another Chapter
 
 #figure(fake-image, caption: [aaa])
 
-See @full1, @a and @b.
+See @1, @1a and @1b.
 
-See also @full2, @c and @d.
+See also @2, @2a and @2b.
+
+#subpar-grid(
+  figure(`adas`, caption: [Inner caption]), <3a>,
+  figure(fake-image, caption: [Inner caption]), <3b>,
+  columns: (1fr, 1fr),
+  // See: https://github.com/typst/typst/issues/4536
+  caption: [Referencing self (#ref(<3>), @3a and @3b) and others (#ref(<1>), @1a and @1b) (#ref(<2>), @2a and @2b)],
+  label: <3>,
+)
