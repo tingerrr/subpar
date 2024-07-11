@@ -104,6 +104,32 @@
   show-sub = _pkg.t4t.def.if-auto(it => it, show-sub)
   show-sub-caption = _pkg.t4t.def.if-auto((num, it) => it, show-sub-caption)
 
+  show figure.caption: it => {
+    show ref: it => {
+      let is-self-ref = (
+        it.element != none
+          and type(it.element) == content
+          and it.element.func() == figure
+          and ({
+            // this is brittle and may fail if users reset numberings
+            let ctr = counter(figure.where(kind: it.element.kind))
+            ctr.at(it.element.location()).first() - 1 == ctr.at(here()).first()
+          })
+      )
+
+      // if we reference a sub figure in our own figure we discard its
+      // supplement and use only the sub figure numbering
+      if is-self-ref {
+        let super-n = counter(figure.where(kind: it.element.kind)).at(it.element.location()).first()
+        let sub-n = sub-figure-counter.at(it.element.location()).first() + 1
+        _numbering(numbering-sub, super-n, sub-n)
+      } else {
+        it
+      }
+    }
+    it
+  }
+
   context {
     let n-super = counter(figure.where(kind: kind)).get().first() + 1
 
