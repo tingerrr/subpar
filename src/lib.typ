@@ -273,7 +273,22 @@
     show-sub-caption: show-sub-caption,
 
     _grid(
-      .._util.stitch-pairs(figures).map(((f, l)) => [#f#l]),
+      .._util.stitch-pairs(figures).map(((f, l)) => if type(f) == content and f.func() == _grid.cell {
+        assert.eq(
+          l, none,
+          message: "When using `grid.cell` in `subpar.grid`, place labels inside the cell itself",
+        )
+        f
+      } else if type(f) == content and f.func() in (
+        _grid.hline,
+        _grid.vline,
+        _grid.header,
+        _grid.footer,
+      ) {
+        f
+      } else {
+        [#f#l]
+      }),
       ..grid-args,
     ),
   )

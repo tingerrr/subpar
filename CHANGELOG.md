@@ -6,6 +6,8 @@
 ## Changed
 
 ## Fixed
+- Passing `grid` sub-elements to `subpar.grid` now correctly passses them though
+  to `grid`
 
 ---
 
