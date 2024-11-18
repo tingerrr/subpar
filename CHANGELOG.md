@@ -1,8 +1,17 @@
 # [unreleased](https://github.com/tingerrr/subpar/tags/)
 ## Added
-- added scope paramter to `super` and `grid`
 
 ## Removed
+
+## Changed
+
+## Fixed
+
+---
+
+# [v0.2.0](https://github.com/tingerrr/subpar/tags/v0.2.0)
+## Added
+- added scope paramter to `super` and `grid`
 
 ## Changed
 - updated minimum compiler version to 0.12.0
@@ -10,6 +19,7 @@
 ## Fixed
 - Passing `grid` sub-elements to `subpar.grid` now correctly passses them though
   to `grid`
+- cleaned up changelog
 
 ---
 
@@ -17,10 +27,6 @@
 ## Added
 - Default implementations for figure show rules
 - Manual examples about changing the figure appearances
-
-## Removed
-
-## Changed
 
 ## Fixed
 - non-image kinds are correctly used in `subpar.grid`
