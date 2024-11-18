@@ -4,6 +4,7 @@
 ## Removed
 
 ## Changed
+- updated minimum compiler version to 0.12.0
 
 ## Fixed
 - Passing `grid` sub-elements to `subpar.grid` now correctly passses them though
