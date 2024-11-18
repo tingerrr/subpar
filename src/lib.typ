@@ -31,6 +31,10 @@
 /// - caption (content): The caption of this super figure.
 /// - placement (alignment, auto, none): The float placement of this super
 ///   figure.
+/// - scope (str): Relative to which containing scope the figure is placed. Set
+///   this to `"parent"` to create a full-width figure in a two-column document.
+///   Has no effect if placement is `none`. Can be set to `"parent"` or
+///   `"column"`.
 /// - gap (length): The gap between this super figure's caption and body.
 /// - outlined (bool): Whether this super figure should appear in an outline of
 ///   figures.
@@ -53,6 +57,7 @@
   propagate-supplement: true,
   caption: none,
   placement: none,
+  scope: "column",
   gap: 0.65em,
   outlined: true,
   outlined-sub: false,
@@ -113,6 +118,7 @@
       supplement: supplement,
       caption: caption,
       placement: placement,
+      scope: scope,
       gap: gap,
       outlined: outlined,
       {
@@ -184,6 +190,7 @@
 /// - caption (content): Corressponds to the super figure's `caption`.
 /// - placement (alignment, auto, none): Corressponds to the super figure's
 ///   `placement`.
+/// - scope (str): Corressponds to the super figure's `scope`.
 /// - gap (length): Corressponds to the super figure's `gap`.
 /// - outlined (bool): Corressponds to the super figure's `outlined`.
 /// - outlined-sub (bool): Corressponds to the super figure's `outlined-sub`.
@@ -211,6 +218,7 @@
   propagate-supplement: true,
   caption: none,
   placement: none,
+  scope: "column",
   gap: 0.65em,
   outlined: true,
   outlined-sub: false,
@@ -264,6 +272,7 @@
     propagate-supplement: propagate-supplement,
     caption: caption,
     placement: placement,
+    scope: scope,
     gap: gap,
     outlined: outlined,
     outlined-sub: outlined-sub,
