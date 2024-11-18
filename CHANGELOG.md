@@ -1,5 +1,6 @@
 # [unreleased](https://github.com/tingerrr/subpar/tags/)
 ## Added
+- added scope paramter to `super` and `grid`
 
 ## Removed
 
