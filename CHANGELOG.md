@@ -1,11 +1,27 @@
 # [unreleased](https://github.com/tingerrr/subpar/tags/)
 ## Added
+### Translations
+- `bg` Bulgarian
+- `ca` Catalan/Valencian
+- `eu` Basque
+- `gl` Galician
+- `he` Hebrew
+- `is` Icelandic
+- `la` Latin
+- `nl` Dutch
 
 ## Removed
 
 ## Changed
 
 ## Fixed
+### Translations
+- `gr` -> `el` Greek
+- `ua` -> `uk` Ukrainian
+
+Translations were taken from [Typst#c29c965][hash].
+
+[hash]: https://github.com/typst/typst/commit/c29c96562ddb9caec04088f78f48dcd9cca2c61a
 
 ---
 
