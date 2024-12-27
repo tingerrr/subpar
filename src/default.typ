@@ -14,7 +14,7 @@
 ///
 /// This function is contextual.
 ///
-/// - self_ (content): The figure to show using the defualt show rule.
+/// - self_ (content): The figure to show using the default show rule.
 /// -> content
 #let show-figure(self_) = {
   // NOTE: this is written to be close to the rust impl to make changes easier to compare
