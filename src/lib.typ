@@ -16,7 +16,7 @@
 ///
 /// - kind (str, function): The image kind which should be used, this is mainly
 ///   relevant for introspection and defaults to `image`. This cannot be
-///   automatically resovled like for normal figures and must be set.
+///   automatically resolved like for normal figures and must be set.
 /// - numbering (str, function): This is the numbering used for this super
 ///   figure.
 /// - numbering-sub (str, function): This is the numbering used for the sub
@@ -41,7 +41,7 @@
 /// - outlined-sub (bool): Whether the sub figures should appear in an outline
 ///   of figures.
 /// - label (label, none): The label to attach to this super figure.
-/// - show-sub (function, auto): A show rule override for sub figures. Recevies
+/// - show-sub (function, auto): A show rule override for sub figures. Receives
 ///   the sub figure.
 /// - show-sub-caption (function, auto): A show rule override for sub figure's
 ///   captions. Receives the realized numbering and caption element.
@@ -239,7 +239,7 @@
   _pkg.t4t.assert.any-type(length, relative, array, dictionary, function, inset)
 
   if args.named().len() != 0 {
-    panic("Unexpectd arguments: `" + repr(args.named()) + "`")
+    panic("Unexpected arguments: `" + repr(args.named()) + "`")
   }
 
   let figures = args.pos()
