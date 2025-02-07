@@ -1,5 +1,5 @@
-// Synopsis:
-// - passing a grid sub element works as expected
+/// Synopsis:
+/// - passing a grid sub element works as expected
 
 #import "/tests/util.typ": *
 #import "/src/lib.typ" as subpar

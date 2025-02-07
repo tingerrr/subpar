@@ -1,23 +1,23 @@
 # [unreleased](https://github.com/tingerrr/subpar/tags/)
 ## Added
-### Translations
-- `bg` Bulgarian
-- `ca` Catalan/Valencian
-- `eu` Basque
-- `gl` Galician
-- `he` Hebrew
-- `is` Icelandic
-- `la` Latin
-- `nl` Dutch
+- api: argument pass-through configuration
+- i18n: `bg` Bulgarian
+- i18n: `ca` Catalan/Valencian
+- i18n: `eu` Basque
+- i18n: `gl` Galician
+- i18n: `he` Hebrew
+- i18n: `is` Icelandic
+- i18n: `la` Latin
+- i18n: `nl` Dutch
 
 ## Removed
 
 ## Changed
 
 ## Fixed
-### Translations
-- `gr` -> `el` Greek
-- `ua` -> `uk` Ukrainian
+- api: removed validation of argument types
+- i18n: `gr` -> `el` Greek
+- i18n: `ua` -> `uk` Ukrainian
 
 Translations were taken from [Typst#c29c965][hash].
 

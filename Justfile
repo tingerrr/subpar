@@ -1,34 +1,63 @@
-root := justfile_directory()
+_doc := 'doc'
+_assets := 'assets'
+_showcase := _assets / 'showcase'
 
-export TYPST_ROOT := root
-export TYPST_FONT_PATHS := root / 'assets' / 'fonts'
+export TYPST_ROOT := justfile_directory()
+export TYPST_FONT_PATHS := justfile_directory() / 'assets' / 'fonts'
 
 # list recipes
 [private]
 default:
-	just --list
-
-# run typst with the correct environment variables
-typst *args:
-	typst {{ args }}
-
-# generate the manual
-doc cmd='compile':
-	typst {{ cmd }} doc/manual.typ doc/manual.pdf
-
-# generate the example images
-examples:
-	typst compile examples/example.typ examples/example.png
-	oxipng --opt max examples/example.png
+	@just --list --unsorted
 
 # run the test suite
-test filter='':
-	tt run {{ filter }}
+[positional-arguments]
+test *args:
+	tt run "$@"
 
-# update the tests
-update filter='':
-	tt update {{ filter }}
+# update the test suite
+[positional-arguments]
+update *args:
+	tt update "$@"
 
-# run the ci test suite
-ci: examples
-	tt run
+# clean all output directories
+clean:
+	rm --recursive --force {{ _doc / 'out' }}
+	rm --recursive --force {{ _showcase / 'out' }}
+	tt util clean
+
+# run the ci checks locally
+ci: generate-doc generate-showcase (test '--no-fail-fast')
+
+# update the showcase image
+update-showcase: generate-showcase
+	oxipng --opt max {{ _showcase / 'out' / 'showcase.png' }}
+	cp {{ _showcase / 'out' / 'showcase.png' }} {{ _assets / 'showcase.png' }}
+
+# generate the showcase image
+generate-showcase: (clear-directory (_showcase / 'out'))
+	typst compile \
+		{{ _showcase / 'showcase.typ' }} \
+		{{ _showcase / 'out' / 'showcase.png' }}
+
+# generate a new manual and update it
+update-doc: generate-doc
+	cp {{ _doc / 'out' / 'manual.pdf' }} {{ _assets / 'manual.pdf' }}
+
+# generate the manual
+generate-doc: (clear-directory (_doc / 'out'))
+	typst compile \
+		{{ _doc / 'manual.typ' }} \
+		{{ _doc / 'out' / 'manual.pdf' }}
+
+# watch the manual
+watch-doc: (clear-directory (_doc / 'out'))
+	typst watch \
+		{{ _doc / 'manual.typ' }} \
+		{{ _doc / 'out' / 'manual.pdf' }}
+
+# ensure a directy exists and is empty
+[private]
+clear-directory dir:
+	rm --recursive --force {{ dir }}
+	mkdir {{ dir }}

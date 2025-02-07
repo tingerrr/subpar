@@ -1,4 +1,4 @@
-#import "@local/mantys:0.1.4" as mantys
+#import "@preview/mantys:1.0.0" as mantys
 #import "@preview/hydra:0.4.0": hydra
 
 #import "/src/lib.typ" as subpar
@@ -10,7 +10,7 @@
   link("https://github.com/tingerrr/subpar/issues/" + str(n))[subpar\##n],
 )
 
-#show: mantys.mantys.with(
+#show: mantys.mantys(
   ..package,
   title: [subpar],
   date: datetime.today().display(),
@@ -18,7 +18,11 @@
     SUBPAR provides easy to use sub figures with sensible default numbering and an easy-to-use
     no-setup API.
   ],
-  examples-scope: (subpar: subpar),
+  examples-scope: (scope: (subpar: subpar)),
+  theme: mantys.create-theme(
+    fonts: (sans: "TeX Gyre Heros"),
+    heading: (font: "TeX Gyre Heros"),
+  )
 )
 
 #show raw: it => {
@@ -149,8 +153,8 @@ Subpar provides a default implementation for this: `subpar.default.show-figure`,
 = Reference
 == Subpar
 The package entry point.
-#mantys.tidy-module(read("/src/lib.typ"), name: "subpar")
+#mantys.tidy-module("subpar", read("/src/lib.typ"), scope: (mantys: mantys))
 
 == Default
 Contains default implementations for show rules to easily reverse show rules in a scope.
-#mantys.tidy-module(read("/src/default.typ"), name: "default")
+#mantys.tidy-module("default", read("/src/default.typ"), scope: (mantys: mantys))

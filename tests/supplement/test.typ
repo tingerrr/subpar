@@ -1,8 +1,8 @@
-// Synopsis:
-// - default supplement is figure
-// - supplement is inferred from kind
-// - set supplement is used and propagated by default
-// - propagation works as expected
+/// Synopsis:
+/// - default supplement is figure
+/// - supplement is inferred from kind
+/// - set supplement is used and propagated by default
+/// - propagation works as expected
 
 #import "/tests/util.typ": *
 #import "/src/lib.typ" as subpar

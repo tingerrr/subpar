@@ -1,95 +1,152 @@
-#import "util.typ" as _util
-#import "_pkg.typ"
 #import "default.typ"
 
-#let _numbering = numbering
-#let _label = label
-#let _grid = grid
+/// The default overrides to use for figures, these are used to pass arguments
+/// through to the elements directly.
+///
+/// -> dictionary
+#let figure-overrides = (
+  caption: "caption",
+  placement: "placement",
+  scope: "scope",
+  gap: "gap",
+  outlined: "outlined",
+)
 
-/// The counter used for sub figures.
+/// The default overrides to use for figures, these are used to pass arguments
+/// through to the elements directly.
+///
+/// -> dictionary
+#let grid-overrides = (
+  columns: "columns",
+  rows: "rows",
+  gutter: "gutter",
+  column-gutter: "column-gutter",
+  row-gutter: "row-gutter",
+  fill: "fill",
+  align: "align",
+  stroke: "stroke",
+  inset: "inset",
+)
+
+/// The counter used for sub figures. This is automatically counted within and
+/// reset after for each super figure.
+///
+/// -> counter
 #let sub-figure-counter = counter("__subpar:sub-figure-counter")
 
-/// Creates a figure which may contain other figures, a #emph[super]figure. For
-/// the meaning of parameters take a look at the regular figure documentation.
+/// Creates a figure which may contain other figures, a #emph[super]figure.
 ///
-/// See @@grid() for a function which places its sub figures in a grid.
+/// This function makes no assumptions about the layout of its sub figures, it
+/// simply applies the necessary show and set rules such that all figures within
+/// its body get the appropriate numbering.
 ///
-/// - kind (str, function): The image kind which should be used, this is mainly
-///   relevant for introspection and defaults to `image`. This cannot be
-///   automatically resolved like for normal figures and must be set.
-/// - numbering (str, function): This is the numbering used for this super
-///   figure.
-/// - numbering-sub (str, function): This is the numbering used for the sub
-///   figures.
-/// - numbering-sub-ref (str, function): This is the numbering used for
-///   _references_ to the sub figures. If this is a function, it receives both
-///   the super and sub figure numbering respectively.
-/// - supplement (content, function, auto, none): The supplement used for this
-///   super figure _and_ the sub figures when referenced.
-/// - propagate-supplement (bool): Whether the super figure's supplement should
-///   propagate down to its sub figures.
-/// - caption (content): The caption of this super figure.
-/// - placement (alignment, auto, none): The float placement of this super
-///   figure.
-/// - scope (str): Relative to which containing scope the figure is placed. Set
-///   this to `"parent"` to create a full-width figure in a two-column document.
-///   Has no effect if placement is `none`. Can be set to `"parent"` or
-///   `"column"`.
-/// - gap (length): The gap between this super figure's caption and body.
-/// - outlined (bool): Whether this super figure should appear in an outline of
-///   figures.
-/// - outlined-sub (bool): Whether the sub figures should appear in an outline
-///   of figures.
-/// - label (label, none): The label to attach to this super figure.
-/// - show-sub (function, auto): A show rule override for sub figures. Receives
-///   the sub figure.
-/// - show-sub-caption (function, auto): A show rule override for sub figure's
-///   captions. Receives the realized numbering and caption element.
+/// See @cmd:grid for a function which places its sub figures in a grid.
+///
 /// -> content
 #let super(
+  /// The image kind which should be used, this is mainly relevant for
+  /// introspection and defaults to `image`.
+  ///
+  /// Must be one of:
+  /// - `image`
+  /// - `table`
+  /// - `raw`
+  ///
+  /// -> str | function
   kind: image,
 
+  /// This is the numbering used for this super figure.
+  ///
+  /// Signature: #lambda(int, ret: content)
+  ///
+  /// -> str | function
   numbering: "1",
+
+  /// This is the numbering used for the sub figures.
+  ///
+  /// Signature: #lambda(int, ret: content)
+  ///
+  /// -> str | function
   numbering-sub: "(a)",
+
+  /// This is the numbering used for _references_ to the sub figures. If
+  /// this is a function, it receives both the super and sub figure numbering
+  /// respectively.
+  ///
+  /// Signature: #lambda(int, int, ret: content)
+  ///
+  /// -> str | function
   numbering-sub-ref: "1a",
 
+  /// The super figure's supplement.
+  //
+  /// -> content | auto
   supplement: auto,
+
+  /// Whether the super figure's supplement should propagate down to its sub
+  /// figures.
+  //
+  /// -> bool
   propagate-supplement: true,
-  caption: none,
-  placement: none,
-  scope: "column",
-  gap: 0.65em,
-  outlined: true,
+
+  /// Whether the sub figures should appear in an outline of figures.
+  ///
+  /// -> bool
   outlined-sub: false,
+
+  /// The label to attach to this super figure.
+  ///
+  /// -> label | none
   label: none,
 
+  /// A show rule override for sub figures. Receives the sub figure.
+  ///
+  /// Signature: #lambda(content, ret: content)
+  ///
+  /// -> function | auto
   show-sub: auto,
+
+  /// A show rule override for sub figure's captions. Receives the realized
+  /// numbering and caption element. The numbering cna be used directly without
+  /// any further formatting.
+  ///
+  /// Signature: #lambda(content, content, ret: content)
+  ///
+  /// -> function | auto
   show-sub-caption: auto,
 
+  /// The names of named arguments to pass through to the figure directly.
+  ///
+  /// -> dictionary
+  overrides: figure-overrides,
+
+  /// Named arguments to pass to figure verbatim, these are selected using
+  /// @cmd:super.overrides.
+  ///
+  /// -> any
+  ..args,
+
+  /// The figure body, this may contain other figures which will be numbered
+  /// appropriately.
   body,
 ) = {
-  _pkg.t4t.assert.any-type(str, function, kind)
+  import "util.typ"
 
-  let assert-numbering = _pkg.t4t.assert.any-type.with(str, function)
-  assert-numbering(numbering)
-  assert-numbering(numbering-sub)
-  assert-numbering(numbering-sub-ref)
+  assert.eq(
+    args.pos().len(), 0,
+    message: "Unexpected positional args: `" + repr(args.pos()) + "`"
+  )
 
-  // adjust numberings to receive either both or the sub number
-  numbering-sub = _util.sparse-numbering(numbering-sub)
-  numbering-sub-ref = _util.sparse-numbering(numbering-sub-ref)
+  // These overrides allow use to only include those fields which were actually
+  // set, not overriding them with their defaults.
+  let (rest, overrides) = util.get-overrides(args.named(), overrides)
 
-  _pkg.t4t.assert.any-type(str, content, function, type(auto), type(none), supplement)
-  _pkg.t4t.assert.any-type(bool, propagate-supplement)
-  _pkg.t4t.assert.any-type(str, content, type(none), caption)
-  _pkg.t4t.assert.any(top, bottom, auto, none, placement)
-  _pkg.t4t.assert.any-type(length, gap)
-  _pkg.t4t.assert.any-type(bool, outlined)
-  _pkg.t4t.assert.any-type(bool, outlined-sub)
-  _pkg.t4t.assert.any-type(_label, type(none), label)
+  assert.eq(rest.len(), 0, message: "Unexpected named args: `" + repr(rest) + "`")
 
-  _pkg.t4t.assert.any-type(function, type(auto), show-sub)
-  _pkg.t4t.assert.any-type(function, type(auto), show-sub-caption)
+  // Wrap numberings such that if thye are a pattern and contain only one symbol
+  // we only pass the sub number, but otherwise both.
+  numbering-sub = util.sparse-numbering(numbering-sub)
+  numbering-sub-ref = util.sparse-numbering(numbering-sub-ref)
 
   let function-kinds = (
     image: "figure",
@@ -97,36 +154,37 @@
     raw: "raw",
   )
 
-  // NOTE: if we use no propagation, then we can fallback to the normal auto behavior, fixing #4.
+  // If we use no propagation, then we fallback to the normal auto behavior,
+  // which fixes #4.
   if propagate-supplement and supplement == auto {
     if repr(kind) in function-kinds {
-      supplement = context _util.i18n-kind(function-kinds.at(repr(kind)))
+      supplement = context util.i18n-supplement(function-kinds.at(repr(kind)))
     } else {
-      panic("Cannot infer `supplement`, must be set.")
+      panic("Cannot infer `supplement`, must be set")
     }
   }
 
-  show-sub = _pkg.t4t.def.if-auto(it => it, show-sub)
-  show-sub-caption = _pkg.t4t.def.if-auto((num, it) => it, show-sub-caption)
+  show-sub = util.auto-or-default(show-sub, it => it)
+  show-sub-caption = util.auto-or-default(show-sub-caption, (num, it) => it)
 
+  // We need the context for the figure caption rules and numbering retrieval.
   context {
+    // Materialize the super figure number.
     let n-super = counter(figure.where(kind: kind)).get().first() + 1
 
     [#figure(
       kind: kind,
-      numbering: n => _numbering(numbering, n),
+      numbering: n => std.numbering(numbering, n),
       supplement: supplement,
-      caption: caption,
-      placement: placement,
-      scope: scope,
-      gap: gap,
-      outlined: outlined,
+      ..overrides,
       {
-        // TODO: simply setting it for all doesn't seem to work
-        show: _util.apply-for-all(
-          _util.gather-kinds(body),
+        // TODO(tinger): It doesn't seem to work when suing show-set without a
+        // kind, it doesn't not apply to all of the kinds, so we collect them
+        // and apply each individually.
+        show: util.apply-for-all(
+          util.gather-kinds(body),
           kind => inner => {
-            show figure.where(kind: kind): set figure(numbering: _ => _numbering(
+            show figure.where(kind: kind): set figure(numbering: _ => std.numbering(
               numbering-sub-ref, n-super, sub-figure-counter.get().first() + 1
             ))
             inner
@@ -136,10 +194,20 @@
         set figure(supplement: supplement) if propagate-supplement
         set figure(outlined: outlined-sub, placement: none)
 
+        // Set the rule default for figures to use this, then apply the user
+        // rule on top. This allows the user to override it easily while keeping
+        // the show-rule fallback behavior.
         show figure: show-sub
         show figure: it => {
+          // Materialize the sub figure number.
           let n-sub = sub-figure-counter.get().first() + 1
-          let num = _numbering(numbering-sub, n-super, n-sub)
+
+          // Materialize the sub figure numbering with the given super and sub
+          // numbers.
+          let num = std.numbering(numbering-sub, n-super, n-sub)
+
+          // Set the rule default for captions to use this, then apply the user
+          // rule on top. Just like above.
           show figure.caption: it => {
             num
             [ ]
@@ -147,11 +215,17 @@
           }
           show figure.caption: show-sub-caption.with(num)
 
+          // Adjust the sub figure counter appropriately. This is done to allow
+          // references to get the correct numbering within the figure.
+          //
+          // NOTE(tinger): I don't quite remember why this has to reset the
+          // figure counter itself.
           sub-figure-counter.step()
           it
           counter(figure.where(kind: it.kind)).update(n => n - 1)
         }
 
+        // Reset the sub figure counter for the next super figure.
         sub-figure-counter.update(0)
         body
       },
@@ -159,108 +233,161 @@
   }
 }
 
-/// Provides a convenient wrapper around @@super() which puts sub figures in a
+/// Provides a convenient wrapper around @cmd:super which puts sub figures in a
 /// grid.
 ///
-/// - columns (auto, int, relative, fraction, array): Corresponds to the grid's
-///   `columns` parameter.
-/// - rows (auto, int, relative, fraction, array): Corresponds to the grid's
-///   `rows` parameter.
-/// - gutter (auto, int, relative, fraction, array): Corresponds to the grid's
-///   `gutter` parameter.
-/// - column-gutter (auto, int, relative, fraction, array): Corresponds to the
-///   grid's `column-gutter` parameter.
-/// - row-gutter (auto, int, relative, fraction, array): Corresponds to the
-///   grid's `row-gutter` parameter.
-/// - align (auto, array, alignment, function): Corresponds to the grid's
-///   `align` parameter.
-/// - inset (relative, array, dictionary, function): Corresponds to the grid's
-///   `inset` parameter.
-/// - kind (str, function): Corressponds to the super figure's `kind`.
-/// - numbering (str, function): Corressponds to the super figure's
-///   `numbering`.
-/// - numbering-sub (str, function): Corressponds to the super figure's
-///   `numbering-sub`.
-/// - numbering-sub-ref (str, function): Corressponds to the super figure's
-///   `numbering-sub-ref`.
-/// - supplement (content, function, auto, none): Corressponds to the super
-///   figure's `supplement`.
-/// - propagate-supplement (bool): Corressponds to the super figure's
-///   `propagate-supplement`.
-/// - caption (content): Corressponds to the super figure's `caption`.
-/// - placement (alignment, auto, none): Corressponds to the super figure's
-///   `placement`.
-/// - scope (str): Corressponds to the super figure's `scope`.
-/// - gap (length): Corressponds to the super figure's `gap`.
-/// - outlined (bool): Corressponds to the super figure's `outlined`.
-/// - outlined-sub (bool): Corressponds to the super figure's `outlined-sub`.
-/// - label (label, none): Corressponds to the super figure's `label`.
-/// - show-sub (function): Corressponds to the super figure's `show-sub`.
-/// - show-sub-caption (function): Corressponds to the super figure's
-///   `show-sub-caption`.
 /// -> content
 #let grid(
-  columns: auto,
-  rows: auto,
-  gutter: 1em,
-  column-gutter: auto,
-  row-gutter: auto,
-  align: bottom,
-  inset: (:),
-
+  /// The image kind which should be used, this is mainly relevant for
+  /// introspection and defaults to `image`.
+  ///
+  /// -> str | function
   kind: image,
 
+  /// This is the numbering used for this super figure.
+  ///
+  /// Signature: #lambda(int, ret: content)
+  ///
+  /// -> str | function
   numbering: "1",
+
+  /// This is the numbering used for the sub figures.
+  ///
+  /// Signature: #lambda(int, ret: content)
+  ///
+  /// -> str | function
   numbering-sub: "(a)",
+
+  /// This is the numbering used for _references_ to the sub figures. If
+  /// this is a function, it receives both the super and sub figure numbering
+  /// respectively.
+  ///
+  /// Signature: #lambda(int, int, ret: content)
+  ///
+  /// -> str | function
   numbering-sub-ref: "1a",
 
+  /// The super figure's supplement.
+  //
+  /// -> content | auto
   supplement: auto,
+
+  /// Whether the super figure's supplement should propagate down to its sub
+  /// figures.
+  //
+  /// -> bool
   propagate-supplement: true,
-  caption: none,
-  placement: none,
-  scope: "column",
-  gap: 0.65em,
-  outlined: true,
+
+  /// Whether the sub figures should appear in an outline of figures.
+  ///
+  /// -> bool
   outlined-sub: false,
+
+  /// The label to attach to this super figure.
+  ///
+  /// -> label | none
   label: none,
 
+  /// A show rule override for sub figures. Receives the sub figure.
+  ///
+  /// Signature: #lambda(content, ret: content)
+  ///
+  /// -> function | auto
   show-sub: auto,
+
+  /// A show rule override for sub figure's captions. Receives the realized
+  /// numbering and caption element. The numbering cna be used directly without
+  /// any further formatting.
+  ///
+  /// Signature: #lambda(content, content, ret: content)
+  ///
+  /// -> function | auto
   show-sub-caption: auto,
+
+  /// The names of named arguments to pass through to the figure directly.
+  ///
+  /// -> dictionary
+  figure-overrides: figure-overrides,
+
+  /// The names of named arguments to pass through to the grid directly.
+  ///
+  /// -> dictionary
+  grid-overrides: grid-overrides,
+
+  /// A template function which applies grid set rules. By default this applies
+  /// a gutter of `1m`. These will be overriden by explicitly passing grid
+  /// arguments, but will take precedence over the style chain, disabling them
+  /// allows using the style chain.
+  ///
+  /// Signature: #lambda(content, ret: content)
+  ///
+  /// -> function | auto | none
+  grid-styles: auto,
+
+  /// Named arguments to pass to figure and grid verbatim, these are selected using
+  /// @cmd:grid.figure-overrides and @cmd:grid.grid-overrides respectively.
+  ///
+  /// -> any
   ..args,
 ) = {
-  let assert-arg = _pkg.t4t.assert.any-type.with(type(auto), int, length, relative, fraction, array)
-  assert-arg(columns)
-  assert-arg(rows)
-  assert-arg(gutter)
-  assert-arg(column-gutter)
-  assert-arg(row-gutter)
+  import "util.typ"
 
-  _pkg.t4t.assert.any-type(type(auto), array, alignment, function, align)
-  _pkg.t4t.assert.any-type(length, relative, array, dictionary, function, inset)
+  // As in `super` we want to skip those which aren't set.
+  let (rest, figure-overrides) = util.get-overrides(args.named(), figure-overrides)
 
-  if args.named().len() != 0 {
-    panic("Unexpected arguments: `" + repr(args.named()) + "`")
+  // As in `super` we want to skip those which aren't set.
+  let (rest, grid-overrides) = util.get-overrides(rest, grid-overrides)
+
+  assert.eq(rest.len(), 0, message: "Unexpected named args: `" + repr(rest) + "`")
+
+  // We apply the default rule here so to not override explicitly passed arguments
+  grid-styles = util.none-or-default(grid-styles, it => it)
+  grid-styles = util.auto-or-default(grid-styles, it => {
+    set std.grid(gutter: 1em, align: bottom)
+    it
+  })
+
+  let figures-raw = args.pos()
+  let figures = ()
+
+  // Turn figures followed by a label into a labeled figure.
+  while figures-raw.len() != 0 {
+    let item = figures-raw.remove(0)
+
+    if type(item) == std.label {
+      assert.eq(l, none, message: "`label` must follow a content argument")
+    }
+
+    if type(item) == content {
+      if figures-raw.len() == 0 {
+        figures.push(item)
+        break
+      }
+
+      let next = figures-raw.first()
+
+      if type(next) == std.label {
+        let _ = figures-raw.remove(0)
+
+        if item.func() in (
+          std.grid.hline,
+          std.grid.vline,
+          std.grid.header,
+          std.grid.footer,
+        ) {
+          panic(
+            "`label` must not follow a `grid.cell` directly, place it inside the cell",
+          )
+        }
+
+        figures.push([#item#next])
+      } else {
+        figures.push(item)
+      }
+    }
   }
 
-  let figures = args.pos()
-
-  // NOTE: the mere existence of an argument seems to change how grid behaves, so we discard any that are auto ourselves
-  let grid-args = (
-    columns: columns,
-    rows: rows,
-    align: align,
-    inset: inset,
-  )
-
-  if gutter != auto {
-    grid-args.gutter = gutter
-  }
-  if column-gutter != auto {
-    grid-args.column-gutter = column-gutter
-  }
-  if row-gutter != auto {
-    grid-args.row-gutter = row-gutter
-  }
+  show: grid-styles
 
   super(
     kind: kind,
@@ -270,35 +397,17 @@
 
     supplement: supplement,
     propagate-supplement: propagate-supplement,
-    caption: caption,
-    placement: placement,
-    scope: scope,
-    gap: gap,
-    outlined: outlined,
     outlined-sub: outlined-sub,
     label: label,
 
     show-sub: show-sub,
     show-sub-caption: show-sub-caption,
 
-    _grid(
-      .._util.stitch-pairs(figures).map(((f, l)) => if type(f) == content and f.func() == _grid.cell {
-        assert.eq(
-          l, none,
-          message: "When using `grid.cell` in `subpar.grid`, place labels inside the cell itself",
-        )
-        f
-      } else if type(f) == content and f.func() in (
-        _grid.hline,
-        _grid.vline,
-        _grid.header,
-        _grid.footer,
-      ) {
-        f
-      } else {
-        [#f#l]
-      }),
-      ..grid-args,
+    ..figure-overrides,
+
+    std.grid(
+      ..grid-overrides,
+      ..figures,
     ),
   )
 }

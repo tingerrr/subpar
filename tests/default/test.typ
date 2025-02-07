@@ -1,6 +1,6 @@
-// Synopsis:
-// - references in text and outlines and figures themselves are correctly numbered
-// - the super figure supplement is propagated down to sub figures
+/// Synopsis:
+/// - references in text and outlines and figures themselves are correctly numbered
+/// - the super figure supplement is propagated down to sub figures
 
 #import "/tests/util.typ": *
 #import "/src/lib.typ" as subpar

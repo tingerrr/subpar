@@ -1,7 +1,7 @@
-// Synopsis:
-// - default kind is figure and is not inferred from content
-// - the super supplement is propagated down by default
-// - same kind correctly usese same counter
+/// Synopsis:
+/// - default kind is figure and is not inferred from content
+/// - the super supplement is propagated down by default
+/// - same kind correctly usese same counter
 
 #import "/tests/util.typ": *
 #import "/src/lib.typ" as subpar

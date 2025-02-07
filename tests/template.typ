@@ -1,5 +1,5 @@
-// Synopsis:
-//
+/// Synopsis:
+///
 
 #import "/tests/util.typ": *
 #import "/src/lib.typ" as subpar
