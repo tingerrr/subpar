@@ -1,7 +1,7 @@
 // Synopsis:
 //
 
-#import "/test/util.typ": *
+#import "/tests/util.typ": *
 #import "/src/lib.typ" as subpar
 
 #subpar.grid(

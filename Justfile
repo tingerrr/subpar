@@ -23,12 +23,12 @@ examples:
 
 # run the test suite
 test filter='':
-	typst-test run {{ filter }}
+	tt run {{ filter }}
 
 # update the tests
 update filter='':
-	typst-test update {{ filter }}
+	tt update {{ filter }}
 
 # run the ci test suite
 ci: examples
-	typst-test run
+	tt run

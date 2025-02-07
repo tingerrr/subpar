@@ -4,7 +4,7 @@
 // - set supplement is used and propagated by default
 // - propagation works as expected
 
-#import "/test/util.typ": *
+#import "/tests/util.typ": *
 #import "/src/lib.typ" as subpar
 
 // default supplement is figure

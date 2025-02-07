@@ -3,7 +3,7 @@
 // - currently there is no way to resolve the styles at the element location like the built in
 //   auto does
 
-#import "/test/util.typ": *
+#import "/tests/util.typ": *
 #import "/src/lib.typ" as subpar
 
 German:

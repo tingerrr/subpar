@@ -2,7 +2,7 @@
 // - adding contextual numbering like chapter-relative numbering preserves the correct subfigure
 //   numbering and supplements
 
-#import "/test/util.typ": *
+#import "/tests/util.typ": *
 #import "/src/lib.typ" as subpar
 
 #let sub-figure-numbering = (super, sub) => numbering("1.1a", counter(heading).get().first(), super, sub)

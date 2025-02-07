@@ -1,7 +1,7 @@
 // Synopsis:
 // - passing a grid sub element works as expected
 
-#import "/test/util.typ": *
+#import "/tests/util.typ": *
 #import "/src/lib.typ" as subpar
 
 #subpar.grid(

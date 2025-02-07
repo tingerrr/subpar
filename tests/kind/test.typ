@@ -3,7 +3,7 @@
 // - the super supplement is propagated down by default
 // - same kind correctly usese same counter
 
-#import "/test/util.typ": *
+#import "/tests/util.typ": *
 #import "/src/lib.typ" as subpar
 
 // figure by default regardless of inner content
