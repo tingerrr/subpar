@@ -2,7 +2,7 @@
 // - references in text and outlines and figures themselves are correctly numbered
 // - the super figure supplement is propagated down to sub figures
 
-#import "/test/util.typ": *
+#import "/tests/util.typ": *
 #import "/src/lib.typ" as subpar
 
 #outline(target: figure.where(kind: image))
