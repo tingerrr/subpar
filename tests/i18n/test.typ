@@ -1,7 +1,7 @@
-// Synopsis:
-// - fallback order is region -> language -> english
-// - currently there is no way to resolve the styles at the element location like the built in
-//   auto does
+/// Synopsis:
+/// - fallback order is region -> language -> english
+/// - currently there is no way to resolve the styles at the element location like the built in
+///   auto does
 
 #import "/tests/util.typ": *
 #import "/src/lib.typ" as subpar

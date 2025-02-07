@@ -21,17 +21,17 @@ Subpar is a [Typst] package for creating sub figures.
 
 Above in @full, we see a figure which is composed of two other figures, namely @a and @b.
 ```
-![ex]
+![showcase]
 
 ## Contributing
 Contributions are most welcome, make sure to let others know you're working on something beforehand so no two people waste their time working on the same issue.
 It's recommended to have [`tytatnic`][tt] installed to run tests locally.
 
 ## Documentation
-A guide and API-reference for subpar can be found in it's [manual].
+A guide and API-reference for subpar can be found in its [manual].
 
-[ex]: /examples/example.png
-[manual]: ./doc/manual.pdf
+[showcase]: /assets/showcase.png
+[manual]: ./assets/manual.pdf
 
 [Typst]: https://typst.app/
 [tt]: https://github.com/tingerrr/tytanic

@@ -1,6 +1,6 @@
-// Synopsis:
-// - adding contextual numbering like chapter-relative numbering preserves the correct subfigure
-//   numbering and supplements
+/// Synopsis:
+/// - adding contextual numbering like chapter-relative numbering preserves the correct subfigure
+///   numbering and supplements
 
 #import "/tests/util.typ": *
 #import "/src/lib.typ" as subpar

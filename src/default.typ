@@ -1,29 +1,24 @@
-// NOTE: we avoid a possible syntax error in the future when custom elements are added and self may become a keyword by appending an underscore
-
-#let _resolve(elem, it, field) = {
-  if it.has(field) {
-    it.at(field)
-  } else {
-    // we can't func.at(field) to resolve the field
-    // eval(repr(elem) + "." + field)
-    elem.at(field)
-  }
-}
-
-/// The default figure show rule. The active set rules will be used.
+/// #property(requires-context: true)
+/// The default figure show rule. This can be used to display a figure the same
+/// way as typst does by default.
 ///
-/// This function is contextual.
-///
-/// - self_ (content): The figure to show using the default show rule.
 /// -> content
-#let show-figure(self_) = {
-  // NOTE: this is written to be close to the rust impl to make changes easier to compare
+#let show-figure(
+  /// The figure to show using the default show rule.
+  ///
+  /// -> content
+  it
+) = {
+  import "util.typ"
 
-  let realized = self_.body
+  // NOTE: this is written to be close to the rust impl to make changes easier
+  // to compare
 
-  let caption = _resolve(figure, self_, "caption")
+  let realized = it.body
+
+  let caption = util.resolve-element-field(figure, it, "caption")
   if caption != none {
-    let v = v(self_.gap, weak: true)
+    let v = v(it.gap, weak: true)
     let position = _resolve(figure.caption, caption, "position")
     realized = if position == top {
       caption + v + realized
@@ -37,7 +32,7 @@
     block(realized)
   }
 
-  let placement = _resolve(figure, self_, "placement")
+  let placement = util.resolve-element-field(figure, it, "placement")
   if placement != none {
     realized = place(placement, float: true)
   }
