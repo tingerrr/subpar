@@ -1,6 +1,16 @@
 # [unreleased](https://github.com/tingerrr/subpar/tags/)
 ## Added
-- api: argument pass-through configuration
+
+## Removed
+
+## Changed
+
+## Fixed
+
+---
+
+# [v0.2.1](https://github.com/tingerrr/subpar/tags/v0.2.1)
+## Added
 - i18n: `bg` Bulgarian
 - i18n: `ca` Catalan/Valencian
 - i18n: `eu` Basque
@@ -10,18 +20,10 @@
 - i18n: `la` Latin
 - i18n: `nl` Dutch
 
-## Removed
-
-## Changed
-
 ## Fixed
-- api: removed validation of argument types
+- Removed validation of argument types
 - i18n: `gr` -> `el` Greek
 - i18n: `ua` -> `uk` Ukrainian
-
-Translations were taken from [Typst#c29c965][hash].
-
-[hash]: https://github.com/typst/typst/commit/c29c96562ddb9caec04088f78f48dcd9cca2c61a
 
 ---
 
@@ -35,7 +37,6 @@ Translations were taken from [Typst#c29c965][hash].
 ## Fixed
 - Passing `grid` sub-elements to `subpar.grid` now correctly passses them though
   to `grid`
-- cleaned up changelog
 
 ---
 
