@@ -15,11 +15,6 @@ default:
 test *args:
 	tt run "$@"
 
-# update the test suite
-[positional-arguments]
-update *args:
-	tt update "$@"
-
 # clean all output directories
 clean:
 	rm --recursive --force {{ _doc / 'out' }}
@@ -27,7 +22,10 @@ clean:
 	tt util clean
 
 # run the ci checks locally
-ci: generate-doc generate-showcase (test '--no-fail-fast')
+ci: generate generate (test '--no-fail-fast' '--max-delta' '1')
+
+# update all assets
+update: update-showcase update-doc
 
 # update the showcase image
 update-showcase: generate-showcase
@@ -43,6 +41,9 @@ generate-showcase: (clear-directory (_showcase / 'out'))
 # generate a new manual and update it
 update-doc: generate-doc
 	cp {{ _doc / 'out' / 'manual.pdf' }} {{ _assets / 'manual.pdf' }}
+
+# generate all assets
+generate: generate-showcase generate-doc
 
 # generate the manual
 generate-doc: (clear-directory (_doc / 'out'))
