@@ -107,7 +107,7 @@
   show-sub: auto,
 
   /// A show rule override for sub figure's captions. Receives the realized
-  /// numbering and caption element. The numbering cna be used directly without
+  /// numbering and caption element. The numbering can be used directly without
   /// any further formatting.
   ///
   /// Signature: #lambda(content, content, ret: content)
@@ -143,7 +143,7 @@
 
   assert.eq(rest.len(), 0, message: "Unexpected named args: `" + repr(rest) + "`")
 
-  // Wrap numberings such that if thye are a pattern and contain only one symbol
+  // Wrap numberings such that if they are a pattern and contain only one symbol
   // we only pass the sub number, but otherwise both.
   numbering-sub = util.sparse-numbering(numbering-sub)
   numbering-sub-ref = util.sparse-numbering(numbering-sub-ref)
@@ -178,7 +178,7 @@
       supplement: supplement,
       ..overrides,
       {
-        // TODO(tinger): It doesn't seem to work when suing show-set without a
+        // TODO(tinger): It doesn't seem to work when using show-set without a
         // kind, it doesn't not apply to all of the kinds, so we collect them
         // and apply each individually.
         show: util.apply-for-all(
@@ -296,7 +296,7 @@
   show-sub: auto,
 
   /// A show rule override for sub figure's captions. Receives the realized
-  /// numbering and caption element. The numbering cna be used directly without
+  /// numbering and caption element. The numbering can be used directly without
   /// any further formatting.
   ///
   /// Signature: #lambda(content, content, ret: content)
@@ -315,7 +315,7 @@
   grid-overrides: grid-overrides,
 
   /// A template function which applies grid set rules. By default this applies
-  /// a gutter of `1m`. These will be overriden by explicitly passing grid
+  /// a gutter of `1em`. These will be overriden by explicitly passing grid
   /// arguments, but will take precedence over the style chain, disabling them
   /// allows using the style chain.
   ///
