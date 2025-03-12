@@ -25,7 +25,7 @@ Above in @full, we see a figure which is composed of two other figures, namely @
 
 ## Contributing
 Contributions are most welcome, make sure to let others know you're working on something beforehand so no two people waste their time working on the same issue.
-It's recommended to have [`tytatnic`][tt] installed to run tests locally.
+It's recommended to have [`tytanic`][tt] installed to run tests locally.
 
 ## Documentation
 A guide and API-reference for subpar can be found in its [manual].
