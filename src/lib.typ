@@ -355,7 +355,7 @@
     let item = figures-raw.remove(0)
 
     if type(item) == std.label {
-      assert.eq(l, none, message: "`label` must follow a content argument")
+      panic("`label` must follow a content argument")
     }
 
     if type(item) == content {
@@ -370,13 +370,14 @@
         let _ = figures-raw.remove(0)
 
         if item.func() in (
+          std.grid.cell,
           std.grid.hline,
           std.grid.vline,
           std.grid.header,
           std.grid.footer,
         ) {
           panic(
-            "`label` must not follow a `grid.cell` directly, place it inside the cell",
+            "`label` must not follow a `grid` sub element directly, place it after a figure or inside a `grid.cell`",
           )
         }
 
