@@ -4,8 +4,11 @@
 ## Removed
 
 ## Changed
+- Improved error message for some label error paths
 
 ## Fixed
+- Fixed panic because of undefined variable in error path
+- Fixed incorrect handling of `grid.cell`
 
 ---
 
