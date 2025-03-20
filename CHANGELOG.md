@@ -4,6 +4,13 @@
 ## Removed
 
 ## Changed
+
+## Fixed
+
+---
+
+# [v0.2.2](https://github.com/tingerrr/subpar/tags/v0.2.2)
+## Changed
 - Improved error message for some label error paths
 
 ## Fixed
