@@ -106,7 +106,7 @@
   /// -> str
   kind,
 ) = {
-  let map = toml("/assets/i18n.toml")
+  let map = toml("../assets/i18n.toml")
 
   if kind not in map.en {
     panic("Unknown kind: `" + kind + "`")
