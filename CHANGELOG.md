@@ -9,6 +9,7 @@
 ## Fixed
 - Fixed panic because of undefined variable in error path
 - Fixed incorrect handling of `grid.cell`
+- Removed absolute path to assets in [`util.typ`](./src/util.typ)
 
 ---
 
