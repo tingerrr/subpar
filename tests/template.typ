@@ -2,12 +2,13 @@
 ///
 
 #import "/tests/util.typ": *
-#import "/src/lib.typ" as subpar
+#import "/src/lib.typ": subpar, sub-figures
 
-#subpar.grid(
+#show: subpar()
+
+#sub-figures(
   figure(fake-image, caption: [Inner Caption]), <1a>,
   figure(fake-image, caption: [Inner Caption]), <1b>,
-  columns: (1fr, 1fr),
   caption: [Super],
   label: <1>,
 )
