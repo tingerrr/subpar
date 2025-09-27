@@ -135,13 +135,13 @@ These work similar to show rules, i.e. they receive the element they apply to an
   figure(lorem(2), caption: [An Image of ...]),
   figure(lorem(2), caption: [Another Image of ...]),
   numbering-sub: "1a",
-  show-sub-caption: (num, it) => {
+  show-sub-caption: (num, it) => block({
     it.supplement
     [ ]
     num
     [: ]
     it.body
-  },
+  }),
   columns: 2,
   caption: [Two Figures],
 )

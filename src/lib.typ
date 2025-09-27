@@ -208,11 +208,11 @@
 
           // Set the rule default for captions to use this, then apply the user
           // rule on top. Just like above.
-          show figure.caption: it => {
+          show figure.caption: it => block({
             num
             [ ]
             it.body
-          }
+          })
           show figure.caption: show-sub-caption.with(num)
 
           // Adjust the sub figure counter appropriately. This is done to allow
